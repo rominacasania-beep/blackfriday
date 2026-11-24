@@ -218,7 +218,7 @@ body.fin .reloj,body.fin .toca{display:none}
   </header>
 
   <section id="regalos">
-    <h2 class="titulo">Tenés <em>6 regalos</em><br>esperándote</h2>
+    <h2 class="titulo">Tenés <em>5 regalos</em><br>esperándote</h2>
     <p class="sub">Tocá cada caja para abrirla. El descuento ya viene puesto en el botón.</p>
     <div class="regalos" id="grilla"></div>
   </section>
@@ -263,7 +263,7 @@ body.fin .reloj,body.fin .toca{display:none}
 </main>
 
 <div class="barra" id="barra"><div class="in">
-  <div class="txt">Abriste <b id="abiertos">0</b> de 6 regalos<div class="prog"><i id="prog"></i></div></div>
+  <div class="txt">Abriste <b id="abiertos">0</b> de 5 regalos<div class="prog"><i id="prog"></i></div></div>
   <button id="todos">Abrir todos 🎁</button>
 </div></div>
 
@@ -280,9 +280,7 @@ const PRODUCTOS = [
   {n:'El Club de las Emociones', img:'img/ninos.webp', antes:37, txt:'Journals para niños: emociones, autoestima y creatividad en familia.',
    url:'https://pay.hotmart.com/I106186292J?off=uudlui5p&checkoutMode=10'+SRC, col:'#3fa8a0', col2:'#62c5bd', cinta:'#f7dc95'},
   {n:'NeuroMente · 14 días', img:'img/neuromente.webp', antes:87, txt:'Entrenamiento en video de 14 días: clases, audios guiados y workbook para entender tu sistema nervioso.',
-   url:'https://pay.hotmart.com/C105162759N?off=ib6spslc&offDiscount=BLACKROMI&checkoutMode=10'+SRC, col:'#4b3a8f', col2:'#6a57b8', cinta:'#f0a3c4'},
-  {n:'De 0 a 100 por día', img:'img/de0a100-portada.svg', antes:97, txt:'La guía paso a paso para vender productos digitales con anuncios, con videos y el kit para tu Claude.',
-   url:'https://de0a100.romimanfiesta.com/?utm_source=blackfriday&utm_medium=web&utm_campaign=bf2026', col:'#e2457a', col2:'#f06d98', cinta:'#f7dc95', grande:true}
+   url:'https://pay.hotmart.com/C105162759N?off=ib6spslc&offDiscount=BLACKROMI&checkoutMode=10'+SRC, col:'#4b3a8f', col2:'#6a57b8', cinta:'#f0a3c4', grande:true}
 ];
 
 const grilla = document.getElementById('grilla');
@@ -322,8 +320,8 @@ function abrirRegalo(el, conSacudon) {
     if (navigator.vibrate) navigator.vibrate(30);
     abiertos++;
     document.getElementById('abiertos').textContent = abiertos;
-    document.getElementById('prog').style.width = (abiertos / 6 * 100) + '%';
-    if (abiertos === 6) { document.getElementById('todos').textContent = '¡Los abriste todos! 🎉'; lluvia(); }
+    document.getElementById('prog').style.width = (abiertos / PRODUCTOS.length * 100) + '%';
+    if (abiertos === PRODUCTOS.length) { document.getElementById('todos').textContent = '¡Los abriste todos! 🎉'; lluvia(); }
   };
   if (conSacudon) { el.classList.add('sacude'); setTimeout(go, 420); } else go();
 }
