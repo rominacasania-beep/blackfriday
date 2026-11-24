@@ -140,11 +140,11 @@ section{margin-top:46px}
 .sobre .cuerpo{position:absolute;inset:0;border-radius:10px;background:linear-gradient(160deg,var(--dorado2),var(--dorado));box-shadow:0 18px 40px rgba(0,0,0,.45),0 0 40px rgba(247,220,149,.35)}
 .sobre .solapa{position:absolute;left:0;right:0;top:0;height:95px;transform-origin:top;background:linear-gradient(180deg,#f9e3a8,#d9ae52);clip-path:polygon(0 0,100% 0,50% 100%);transition:transform .7s;z-index:3}
 .sobre .sello{position:absolute;left:50%;top:70px;width:46px;height:46px;margin-left:-23px;border-radius:50%;background:radial-gradient(circle at 35% 35%,#c06aa0,#7a2f63);z-index:4;display:grid;place-items:center;font-size:20px;box-shadow:0 4px 10px rgba(0,0,0,.3);transition:opacity .3s}
-.sobre .carta{position:absolute;left:14px;right:14px;top:14px;height:130px;background:#fffaf0;border-radius:8px;z-index:2;transition:transform .9s cubic-bezier(.2,1.4,.4,1) .35s;color:#3a2457;font-family:var(--serif);font-weight:700;font-size:22px;display:grid;place-items:center;padding:10px}
+.sobre .carta{color:transparent!important;position:absolute;left:14px;right:14px;top:14px;height:130px;background:#fffaf0;border-radius:8px;z-index:2;transition:transform .9s cubic-bezier(.2,1.4,.4,1) .35s;color:#3a2457;font-family:var(--serif);font-weight:700;font-size:22px;display:grid;place-items:center;padding:10px}
 .sobre:not(.abierto){animation:tiembla 2.6s ease-in-out infinite}
 .sobre.abierto .solapa{transform:rotateX(180deg);z-index:1}
 .sobre.abierto .sello{opacity:0}
-.sobre.abierto .carta{transform:translateY(-70px)}
+.sobre.abierto .carta{transform:translateY(-70px);color:#3a2457!important}
 .mc{display:none;margin-top:6px;background:var(--card);border:1px solid rgba(230,192,106,.45);border-radius:22px;padding:22px 18px;text-align:left}
 .mc.ver{display:block;animation:sube .6s ease}
 @keyframes sube{from{opacity:0;transform:translateY(20px)}}
@@ -166,6 +166,26 @@ section{margin-top:46px}
 .barra .prog{height:6px;border-radius:9px;background:#2d2042;margin-top:5px;overflow:hidden}
 .barra .prog i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--lila),var(--dorado2));transition:width .6s}
 .barra button{font-size:12.5px;font-weight:700;padding:10px 12px;border-radius:11px;background:var(--lila-osc);white-space:nowrap}
+
+/* Ruleta */
+.ruleta-wrap{text-align:center}
+.ruleta{position:relative;width:min(330px,88vw);aspect-ratio:1;margin:26px auto 0}
+.ruleta svg{position:absolute;inset:7%;width:86%;height:86%;border-radius:50%;box-shadow:0 0 0 6px #2a1640,0 0 40px rgba(247,220,149,.45);transition:transform 6s cubic-bezier(.12,.75,.12,1)}
+.luces{position:absolute;inset:0;border-radius:50%;background:radial-gradient(circle,transparent 58%,#3a2160 59%,#2a1640 70%,transparent 71%)}
+.luces i{position:absolute;left:50%;top:50%;width:11px;height:11px;margin:-5.5px;border-radius:50%;background:var(--dorado2);box-shadow:0 0 10px var(--dorado2);animation:luz 1s steps(1) infinite}
+.luces i:nth-child(odd){animation-delay:.5s}
+.girando .luces i{animation-duration:.25s}
+@keyframes luz{50%{background:#fff;box-shadow:0 0 14px #fff}}
+.puntero{position:absolute;left:50%;top:1%;width:34px;height:42px;margin-left:-17px;z-index:3;background:linear-gradient(180deg,#fff,var(--dorado2));clip-path:polygon(0 0,100% 0,50% 100%);filter:drop-shadow(0 4px 6px rgba(0,0,0,.5))}
+.centro{position:absolute;left:50%;top:50%;width:26%;height:26%;transform:translate(-50%,-50%);border-radius:50%;z-index:3;font-family:var(--num);font-weight:900;font-size:clamp(14px,4.4vw,19px);color:#2a1640;background:radial-gradient(circle at 35% 30%,#fff,var(--dorado2) 45%,var(--dorado));box-shadow:0 0 0 5px #2a1640,0 0 26px rgba(247,220,149,.8);animation:late 1.2s ease-in-out infinite}
+.centro:disabled{animation:none;cursor:default}
+.ganaste{display:none;margin-top:18px}
+.ganaste.ver{display:block;animation:sube .7s cubic-bezier(.2,1.6,.4,1)}
+.ganaste span{font-weight:700;color:var(--lila-suave)}
+.ganaste b{display:block;font-family:var(--num);font-weight:900;font-size:58px;line-height:1.05;color:var(--dorado2);text-shadow:0 0 30px rgba(247,220,149,.7)}
+.ganaste p{color:var(--lila-suave)}
+.ganaste strong{color:var(--dorado2)}
+#regalos.bloqueado{display:none}
 
 footer{margin-top:40px;text-align:center;font-size:12px;color:#8f84a8;line-height:1.7}
 footer b{color:var(--gris)}
@@ -217,7 +237,23 @@ body.fin .reloj,body.fin .toca{display:none}
     <div class="aviso-fin">El Black Friday terminó el domingo a la medianoche. Gracias por estar 💜</div>
   </header>
 
-  <section id="regalos">
+  <section id="ruleta" class="ruleta-wrap">
+    <h2 class="titulo">Girá la <em>ruleta</em><br>y descubrí tu descuento</h2>
+    <p class="sub" id="ru-sub">Tenés un solo giro. Hay descuentos de hasta el 100 %.</p>
+    <div class="ruleta">
+      <div class="luces" id="luces"></div>
+      <div class="puntero"></div>
+      <svg id="rueda" viewBox="-110 -110 220 220" aria-hidden="true"></svg>
+      <button class="centro" id="girar">GIRAR</button>
+    </div>
+    <div class="ganaste" id="ganaste">
+      <span>🎉 ¡Ganaste!</span>
+      <b>70 % OFF</b>
+      <p>Todos mis productos a <strong>15 USD</strong> hasta el domingo. Abrí tus regalos 👇</p>
+    </div>
+  </section>
+
+  <section id="regalos" class="bloqueado">
     <h2 class="titulo">Tenés <em>5 regalos</em><br>esperándote</h2>
     <p class="sub">Tocá cada caja para abrirla. El descuento ya viene puesto en el botón.</p>
     <div class="regalos" id="grilla"></div>
@@ -333,15 +369,76 @@ document.getElementById('todos').addEventListener('click', () => {
 // Regalo gigante
 const gigante = document.getElementById('gigante');
 gigante.addEventListener('click', () => {
-  if (gigante.classList.contains('abierto')) { document.getElementById('regalos').scrollIntoView({behavior: 'smooth'}); return; }
+  if (gigante.classList.contains('abierto')) { document.getElementById('ruleta').scrollIntoView({behavior: 'smooth'}); return; }
   gigante.classList.add('abierto');
   const r = gigante.getBoundingClientRect();
   explota(r.left + r.width / 2, r.top + r.height / 2, 260);
   setTimeout(lluvia, 300);
   if (navigator.vibrate) navigator.vibrate([40, 40, 80]);
-  const t = document.getElementById('toca'); t.textContent = '🎉 ¡Todo a 15! Bajá y abrí tus regalos'; t.classList.add('listo');
+  const t = document.getElementById('toca'); t.textContent = '🎉 ¡Bajá y girá la ruleta!'; t.classList.add('listo');
+  setTimeout(() => document.getElementById('ruleta').scrollIntoView({behavior: 'smooth', block: 'center'}), 1700);
+});
+
+// Ruleta: siempre cae en 70 % y queda guardada en este navegador
+const GAJOS = [
+  {t: '10 %', c: '#7a5fc4'}, {t: '70 %', c: '#e6c06a'}, {t: '30 %', c: '#d0578d'}, {t: '100 %', c: '#4b3a8f'},
+  {t: '20 %', c: '#9a7fe6'}, {t: '50 %', c: '#e2457a'}, {t: '40 %', c: '#5a3ea8'}, {t: '60 %', c: '#c9a24f'}
+];
+const GANA = 1, CLAVE_RU = 'bf2026-ruleta';
+const rueda = document.getElementById('rueda');
+(function dibujar() {
+  const n = GAJOS.length, paso = 360 / n, r = 100; let svg = '';
+  GAJOS.forEach((g, i) => {
+    const a0 = (i * paso - 90 - paso / 2) * Math.PI / 180, a1 = ((i + 1) * paso - 90 - paso / 2) * Math.PI / 180;
+    svg += `<path d="M0 0 L${r * Math.cos(a0)} ${r * Math.sin(a0)} A${r} ${r} 0 0 1 ${r * Math.cos(a1)} ${r * Math.sin(a1)} Z" fill="${g.c}" stroke="#2a1640" stroke-width="1.5"/>`;
+    const am = i * paso;
+    const oscuro = g.c === '#e6c06a' || g.c === '#c9a24f';
+    svg += `<text transform="rotate(${am}) translate(0 -68)" text-anchor="middle" dominant-baseline="middle" font-family="Playfair Display,Georgia,serif" font-weight="900" font-size="${g.t === '100 %' ? 15 : 17}" fill="${oscuro ? '#2a1640' : '#fff'}">${g.t}</text>`;
+  });
+  svg += '<circle r="100" fill="none" stroke="#f7dc95" stroke-width="3"/>';
+  rueda.innerHTML = svg;
+  const luces = document.getElementById('luces');
+  for (let i = 0; i < 20; i++) { const a = i / 20 * Math.PI * 2; const el = document.createElement('i'); el.style.transform = `translate(${Math.cos(a) * 46.5}cqw,${Math.sin(a) * 46.5}cqw)`; luces.appendChild(el); }
+  luces.style.containerType = 'inline-size';
+})();
+let guardado = null;
+try { guardado = localStorage.getItem(CLAVE_RU); } catch (e) {}
+function premiado(animado) {
+  const btn = document.getElementById('girar');
+  btn.disabled = true; btn.textContent = '70 %';
+  document.getElementById('ru-sub').textContent = 'Ya giraste tu ruleta: tu descuento quedó guardado.';
+  document.getElementById('ganaste').classList.add('ver');
+  document.getElementById('regalos').classList.remove('bloqueado');
   document.getElementById('barra').classList.add('ver');
-  setTimeout(() => document.getElementById('regalos').scrollIntoView({behavior: 'smooth'}), 1700);
+  if (animado) {
+    const r = rueda.getBoundingClientRect(); explota(r.left + r.width / 2, r.top + r.height / 2, 220); lluvia();
+    if (navigator.vibrate) navigator.vibrate([60, 40, 120]);
+    setTimeout(() => document.getElementById('ganaste').scrollIntoView({behavior: 'smooth', block: 'center'}), 900);
+  }
+}
+if (guardado) { rueda.style.transition = 'none'; rueda.style.transform = `rotate(${-GANA * 45}deg)`; premiado(false); }
+let audio;
+function bip(f) {
+  try {
+    audio = audio || new (window.AudioContext || window.webkitAudioContext)();
+    const o = audio.createOscillator(), g = audio.createGain();
+    o.frequency.value = f; o.type = 'triangle'; g.gain.value = .06; o.connect(g); g.connect(audio.destination);
+    o.start(); g.gain.exponentialRampToValueAtTime(.0001, audio.currentTime + .06); o.stop(audio.currentTime + .07);
+  } catch (e) {}
+}
+document.getElementById('girar').addEventListener('click', () => {
+  if (guardado || document.body.classList.contains('fin')) return;
+  guardado = '70';
+  try { localStorage.setItem(CLAVE_RU, '70'); } catch (e) {}
+  const btn = document.getElementById('girar'); btn.disabled = true; btn.textContent = '…';
+  const vueltas = 7, extra = (Math.random() * 30 - 15);
+  const final = vueltas * 360 - GANA * 45 + extra;
+  document.querySelector('.ruleta').classList.add('girando');
+  requestAnimationFrame(() => { rueda.style.transform = `rotate(${final}deg)`; });
+  // tic-tac que se va frenando
+  let t = 0, d = 40;
+  (function sigue() { if (t > 5600) return; bip(900 + Math.random() * 200); t += d; d *= 1.07; setTimeout(sigue, d); })();
+  setTimeout(() => { document.querySelector('.ruleta').classList.remove('girando'); bip(1400); setTimeout(() => bip(1800), 120); premiado(true); }, 6100);
 });
 
 // Sobre sorpresa
@@ -382,7 +479,7 @@ function tic() {
 tic();
 
 // Mostrar la barra al bajar
-addEventListener('scroll', () => { if (scrollY > 500) document.getElementById('barra').classList.add('ver'); }, {passive: true});
+addEventListener('scroll', () => { if (scrollY > 500 && guardado) document.getElementById('barra').classList.add('ver'); }, {passive: true});
 
 // Confeti
 const cf = document.getElementById('confeti'), cx = cf.getContext('2d');
