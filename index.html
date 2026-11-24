@@ -349,7 +349,7 @@ const PRODUCTOS = [
   {n:'Diario de Evidencias + 10 bonos', img:'img/evidencias.webp', pag:'p/evidencias.html', antes:47.99, txt:'Para anotar cada prueba de que lo que pedís ya está llegando.',
    url:'https://pay.hotmart.com/B106105767R?off=fa4i3t6f&offDiscount=BLACKROMI&checkoutMode=10'+SRC, col:'#c9a24f', col2:'#e6c06a', cinta:'#7a5fc4'},
   {n:'El Club de las Emociones', img:'img/ninos.webp', pag:'p/club-de-las-emociones.html', antes:37, txt:'Journals para niños: emociones, autoestima y creatividad en familia.',
-   url:'https://pay.hotmart.com/I106186292J?off=uudlui5p&checkoutMode=10'+SRC, col:'#3fa8a0', col2:'#62c5bd', cinta:'#f7dc95'},
+   precio:9.99, url:'https://pay.hotmart.com/I106186292J?off=uudlui5p&offDiscount=BLACKROMI&checkoutMode=10'+SRC, col:'#3fa8a0', col2:'#62c5bd', cinta:'#f7dc95'},
   {n:'NeuroMente · 14 días', img:'img/neuromente.webp', pag:'p/neuromente.html', antes:87, txt:'Entrenamiento en video de 14 días: clases, audios guiados y workbook para entender tu sistema nervioso.',
    url:'https://pay.hotmart.com/C105162759N?off=ib6spslc&offDiscount=BLACKROMI&checkoutMode=10'+SRC, imp:'https://journal-de-escritura-terapeutica-y-creativa.impultienda.ar/checkout?p=7d576cad-448d-4851-a443-43c55607d8c0&cupon=BLACKROMI79', col:'#4b3a8f', col2:'#6a57b8', cinta:'#f0a3c4'},
   {n:'De 0 a 100 por día', img:'img/de0a100-portada.svg', pag:'p/de-0-a-100.html', antes:97, precio:30, txt:'La guía paso a paso para vender productos digitales con anuncios, con videos y el kit para tu Claude.',
@@ -376,10 +376,10 @@ PRODUCTOS.forEach((p, i) => {
       <div class="info">
         <h3>${p.n}</h3>
         ${p.grande ? `<p>${p.txt}</p>` : ''}
-        <div class="pr"><span class="ahora">${pr} <small>USD</small></span><span class="antes">${String(p.antes).replace('.', ',')} USD</span></div>
+        <div class="pr"><span class="ahora">${String(pr).replace('.', ',')} <small>USD</small></span><span class="antes">${String(p.antes).replace('.', ',')} USD</span></div>
         <span class="unico">Pago único, sin mensualidades</span>
         <button class="ver" type="button">👀 Ver qué trae</button>
-        <a class="btn" href="${EUROPA && p.imp ? p.imp : p.url}" target="_blank" rel="noopener">Lo quiero a ${pr}</a>
+        <a class="btn" href="${EUROPA && p.imp ? p.imp : p.url}" target="_blank" rel="noopener">Lo quiero a ${String(pr).replace('.', ',')}</a>
       </div>
     </div>`;
   el.querySelector('.frente').addEventListener('click', () => abrirRegalo(el, true));

@@ -148,7 +148,7 @@ body.fin .btn{pointer-events:none;filter:grayscale(1);opacity:.6}
 </div></div>
 
 <script>
-const P = {"n": "NeuroMente · 14 días", "antes": 87, "precio": 15, "gancho": "Una experiencia guiada de 14 días, en video, para entender tu sistema nervioso y dejar de reaccionar siempre igual.", "fotos": ["../img/neuromente.webp", "img/neuro.jpg"], "trae": ["Bienvenida y mi punto de partida", "Día 1 · Desactivá el estrés", "Día 2 · Escaneá tu biología", "Día 3 · Escucharme", "Día 4 · Seguridad interna", "Día 5 · Tu historia como evidencia", "Día 6 · Los significados que me habitan", "Día 7 · Mirarme con amor", "Día 8 · Nuevas formas de tratarme", "Día 9 · Actualizá tu autoconcepto", "Día 10 · Entrená el sostén", "Día 11 · Desbloqueá tus deseos", "Día 12 · Redefinir mis conceptos", "Día 13 · Elevar mi autoconcepto", "Día 14 · Más allá de las etiquetas", "Clases en vivo", "Regalitos"], "para": ["Sabés mucho de vos pero seguís reaccionando igual", "Vivís en alerta y te cuesta relajarte", "Querés pasar de entender a practicar", "Te gusta aprender con videos y a tu ritmo"], "url": "https://pay.hotmart.com/C105162759N?off=ib6spslc&offDiscount=BLACKROMI&checkoutMode=10&src=blackfriday-pagina", "imp": "https://journal-de-escritura-terapeutica-y-creativa.impultienda.ar/checkout?p=7d576cad-448d-4851-a443-43c55607d8c0&cupon=BLACKROMI79", "otros": [{"slug": "journal", "n": "Journal de Escritura Terapéutica y Creativa", "foto": "../img/journal.webp", "precio": 15}, {"slug": "kit-2027", "n": "Kit de Manifestación 2027", "foto": "../img/kit2027.webp", "precio": 15}, {"slug": "evidencias", "n": "Diario de Evidencias + 10 bonos", "foto": "../img/evidencias.webp", "precio": 15}, {"slug": "club-de-las-emociones", "n": "El Club de las Emociones", "foto": "../img/ninos.webp", "precio": 15}, {"slug": "de-0-a-100", "n": "De 0 a 100 por día", "foto": "../img/de0a100-portada.svg", "precio": 30}]};
+const P = {"n": "NeuroMente · 14 días", "antes": 87, "precio": 15, "gancho": "Una experiencia guiada de 14 días, en video, para entender tu sistema nervioso y dejar de reaccionar siempre igual.", "fotos": ["../img/neuromente.webp", "img/neuro.jpg"], "trae": ["Bienvenida y mi punto de partida", "Día 1 · Desactivá el estrés", "Día 2 · Escaneá tu biología", "Día 3 · Escucharme", "Día 4 · Seguridad interna", "Día 5 · Tu historia como evidencia", "Día 6 · Los significados que me habitan", "Día 7 · Mirarme con amor", "Día 8 · Nuevas formas de tratarme", "Día 9 · Actualizá tu autoconcepto", "Día 10 · Entrená el sostén", "Día 11 · Desbloqueá tus deseos", "Día 12 · Redefinir mis conceptos", "Día 13 · Elevar mi autoconcepto", "Día 14 · Más allá de las etiquetas", "Clases en vivo", "Regalitos"], "para": ["Sabés mucho de vos pero seguís reaccionando igual", "Vivís en alerta y te cuesta relajarte", "Querés pasar de entender a practicar", "Te gusta aprender con videos y a tu ritmo"], "url": "https://pay.hotmart.com/C105162759N?off=ib6spslc&offDiscount=BLACKROMI&checkoutMode=10&src=blackfriday-pagina", "imp": "https://journal-de-escritura-terapeutica-y-creativa.impultienda.ar/checkout?p=7d576cad-448d-4851-a443-43c55607d8c0&cupon=BLACKROMI79", "otros": [{"slug": "journal", "n": "Journal de Escritura Terapéutica y Creativa", "foto": "../img/journal.webp", "precio": 15}, {"slug": "kit-2027", "n": "Kit de Manifestación 2027", "foto": "../img/kit2027.webp", "precio": 15}, {"slug": "evidencias", "n": "Diario de Evidencias + 10 bonos", "foto": "../img/evidencias.webp", "precio": 15}, {"slug": "club-de-las-emociones", "n": "El Club de las Emociones", "foto": "../img/ninos.webp", "precio": 9.99}, {"slug": "de-0-a-100", "n": "De 0 a 100 por día", "foto": "../img/de0a100-portada.svg", "precio": 30}]};
 const FIN = new Date('2026-11-30T02:59:59Z');
 let EUROPA = false;
 try { EUROPA = /^Europe\//.test(Intl.DateTimeFormat().resolvedOptions().timeZone) || /[?&]eu=1/.test(location.search); } catch (e) {}
@@ -160,10 +160,10 @@ const coma = n => String(n).replace('.', ',');
 $('tit').textContent = P.n;
 $('gancho').textContent = P.gancho;
 $('sello').textContent = '−' + pct + ' %';
-$('ahora').innerHTML = P.precio + ' <small>USD</small>';
+$('ahora').innerHTML = coma(P.precio) + ' <small>USD</small>';
 $('antes').textContent = 'antes ' + coma(P.antes) + ' USD';
-$('bpr').innerHTML = P.precio + ' USD<small>pago único</small>';
-$('btn2').textContent = 'Lo quiero a ' + P.precio + ' USD';
+$('bpr').innerHTML = coma(P.precio) + ' USD<small>pago único</small>';
+$('btn2').textContent = 'Lo quiero a ' + coma(P.precio) + ' USD';
 $('btn3').textContent = 'Lo quiero 🎁';
 document.querySelectorAll('.comprar').forEach(b => {
   b.href = link;
@@ -202,7 +202,7 @@ const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting
 document.querySelectorAll('.it:not([hidden]), .para div').forEach(el => io.observe(el));
 
 // Otros regalos
-P.otros.forEach(o => { const a = document.createElement('a'); a.href = o.slug + '.html'; a.innerHTML = `<img alt="" loading="lazy"><div><span></span><b>${o.precio} USD</b></div>`; a.querySelector('img').src = o.foto; a.querySelector('span').textContent = o.n; $('otros').appendChild(a); });
+P.otros.forEach(o => { const a = document.createElement('a'); a.href = o.slug + '.html'; a.innerHTML = `<img alt="" loading="lazy"><div><span></span><b>${String(o.precio).replace('.', ',')} USD</b></div>`; a.querySelector('img').src = o.foto; a.querySelector('span').textContent = o.n; $('otros').appendChild(a); });
 
 // Barra fija al bajar
 addEventListener('scroll', () => $('barra').classList.toggle('ver', scrollY > 420), {passive: true});
