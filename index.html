@@ -1,0 +1,435 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Black Friday · Romi Manifiesta</title>
+<meta name="description" content="Black Friday de Romi Manifiesta: todo a 15 USD hasta el domingo 29/11. Abrí tus regalos.">
+<meta property="og:title" content="Black Friday · Todo a 15 USD">
+<meta property="og:description" content="Abrí tus regalos: mis productos favoritos a 15 USD cada uno, solo hasta el domingo.">
+<meta property="og:image" content="https://blackfriday.romimanfiesta.com/img/journal.webp">
+<meta name="theme-color" content="#120a1c">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600&family=Playfair+Display:wght@700;800;900&family=Poppins:wght@300;400;500;600;700&display=swap">
+<style>
+:root{
+  --noche:#120a1c;--noche2:#1d1230;--card:#231638;
+  --lila:#b49be8;--lila-osc:#7a5fc4;--lila-suave:#e9e0fb;
+  --dorado:#e6c06a;--dorado2:#f7dc95;--rosa:#f0a3c4;--blanco:#fbf8ff;--gris:#b9aed0;
+  --serif:"Cormorant Garamond",Georgia,serif;--num:"Playfair Display",Georgia,serif;
+  --sans:"Poppins",system-ui,-apple-system,"Segoe UI",sans-serif;
+  color-scheme:dark;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:radial-gradient(1200px 700px at 50% -10%,#3a2160 0%,var(--noche) 55%) fixed,var(--noche);color:var(--blanco);font-family:var(--sans);font-size:15px;line-height:1.55;overflow-x:hidden;padding-bottom:92px}
+canvas#cielo,canvas#confeti{position:fixed;inset:0;width:100%;height:100%;pointer-events:none}
+canvas#cielo{z-index:0}canvas#confeti{z-index:60}
+.wrap{position:relative;z-index:2;max-width:560px;margin:0 auto;padding:0 max(16px,env(safe-area-inset-left))}
+a{color:inherit}
+button{font:inherit;cursor:pointer;border:0;background:none;color:inherit}
+
+/* Cinta que corre */
+.cinta{position:relative;z-index:3;background:linear-gradient(90deg,var(--dorado),var(--dorado2),var(--dorado));color:#2a1640;font-weight:700;font-size:13px;letter-spacing:.14em;text-transform:uppercase;white-space:nowrap;overflow:hidden;padding:9px 0}
+.cinta div{display:inline-block;animation:corre 22s linear infinite}
+.cinta span{margin:0 18px}
+@keyframes corre{to{transform:translateX(-50%)}}
+
+/* Portada */
+.hero{text-align:center;padding:34px 0 10px}
+.kicker{display:inline-block;font-size:11.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--dorado2);border:1px solid rgba(230,192,106,.45);border-radius:99px;padding:6px 14px;background:rgba(230,192,106,.08)}
+.bf{font-family:var(--num);font-weight:900;font-size:clamp(46px,14vw,78px);line-height:.95;margin-top:18px;letter-spacing:.01em;
+  background:linear-gradient(100deg,#fff 0%,var(--lila) 30%,var(--dorado2) 50%,var(--lila) 70%,#fff 100%);background-size:250% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:brillo 4s linear infinite}
+@keyframes brillo{to{background-position:-250% 0}}
+.todo{font-family:var(--serif);font-style:italic;font-size:clamp(30px,9vw,44px);font-weight:600;margin-top:6px;color:var(--lila-suave)}
+.todo b{font-family:var(--num);font-style:normal;font-weight:900;font-size:1.5em;color:var(--dorado2);text-shadow:0 0 28px rgba(247,220,149,.55);display:inline-block;animation:late 1.6s ease-in-out infinite}
+@keyframes late{50%{transform:scale(1.08)}}
+.bajada{color:var(--gris);margin:12px auto 0;max-width:420px}
+
+/* Cuenta regresiva */
+.reloj{display:flex;justify-content:center;gap:10px;margin:22px 0 4px}
+.reloj div{background:linear-gradient(180deg,#2e1c4a,#1b1030);border:1px solid rgba(180,155,232,.35);border-radius:14px;min-width:64px;padding:10px 6px 7px;box-shadow:0 0 22px rgba(122,95,196,.25)}
+.reloj b{display:block;font-family:var(--num);font-size:30px;font-weight:800;line-height:1;color:#fff;font-variant-numeric:tabular-nums}
+.reloj small{font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--gris)}
+.hasta{font-size:12.5px;color:var(--gris)}
+
+/* Regalo gigante */
+.gigante{position:relative;width:210px;height:220px;margin:34px auto 6px;display:block;-webkit-tap-highlight-color:transparent}
+.gigante .aura{position:absolute;inset:-60px;border-radius:50%;background:radial-gradient(circle,rgba(247,220,149,.5) 0%,rgba(180,155,232,.25) 35%,transparent 70%);animation:aura 2.4s ease-in-out infinite}
+@keyframes aura{50%{transform:scale(1.15);opacity:.7}}
+.rayos{position:absolute;left:50%;top:50%;width:520px;height:520px;margin:-260px 0 0 -260px;background:repeating-conic-gradient(from 0deg,rgba(247,220,149,.22) 0 8deg,transparent 8deg 24deg);border-radius:50%;opacity:0;transform:scale(.3);transition:opacity .6s,transform 1.2s;animation:gira 14s linear infinite;-webkit-mask:radial-gradient(circle,#000 20%,transparent 68%);mask:radial-gradient(circle,#000 20%,transparent 68%);pointer-events:none}
+@keyframes gira{to{rotate:360deg}}
+.abierto .rayos{opacity:1;transform:scale(1)}
+.caja{position:absolute;left:15px;right:15px;bottom:0;height:140px;border-radius:12px;background:linear-gradient(135deg,#8b6bd8,#5a3ea8);box-shadow:inset 0 -14px 0 rgba(0,0,0,.15),0 20px 40px rgba(0,0,0,.45)}
+.caja::before{content:"";position:absolute;left:50%;top:0;bottom:0;width:34px;margin-left:-17px;background:linear-gradient(90deg,var(--dorado),var(--dorado2),var(--dorado))}
+.tapa{position:absolute;left:0;right:0;top:44px;height:46px;border-radius:12px;background:linear-gradient(135deg,#a38af0,#6b4dc0);box-shadow:0 6px 14px rgba(0,0,0,.35);transition:transform .9s cubic-bezier(.2,1.6,.4,1),opacity .9s}
+.tapa::before{content:"";position:absolute;left:50%;top:0;bottom:0;width:38px;margin-left:-19px;background:linear-gradient(90deg,var(--dorado),var(--dorado2),var(--dorado))}
+.moño{position:absolute;left:50%;top:-34px;width:96px;height:50px;margin-left:-48px}
+.moño i{position:absolute;top:6px;width:46px;height:38px;border:9px solid var(--dorado2);border-radius:50% 50% 50% 50%/60% 60% 40% 40%}
+.moño i:first-child{left:0;transform:rotate(-18deg)}.moño i:last-child{right:0;transform:rotate(18deg)}
+.gigante:not(.abierto){animation:tiembla 2.2s ease-in-out infinite}
+@keyframes tiembla{0%,70%,100%{transform:rotate(0)}74%{transform:rotate(-5deg)}78%{transform:rotate(5deg)}82%{transform:rotate(-4deg)}86%{transform:rotate(3deg)}90%{transform:rotate(0)}}
+.abierto .tapa{transform:translateY(-170px) rotate(-28deg);opacity:0}
+.premio{position:absolute;left:50%;top:40px;transform:translate(-50%,40px) scale(.2);opacity:0;font-family:var(--num);font-weight:900;font-size:64px;color:var(--dorado2);text-shadow:0 0 30px rgba(247,220,149,.8);transition:all .8s cubic-bezier(.2,1.6,.4,1) .15s;white-space:nowrap}
+.premio small{font-size:20px;font-family:var(--sans);font-weight:600;letter-spacing:.1em}
+.abierto .premio{transform:translate(-50%,-70px) scale(1);opacity:1}
+.toca{font-weight:600;letter-spacing:.06em;color:var(--dorado2);margin-top:8px;animation:late 1.4s ease-in-out infinite}
+.toca.listo{animation:none;color:var(--lila-suave)}
+
+/* Botones */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;width:100%;padding:15px 18px;border-radius:14px;font-weight:700;font-size:15.5px;letter-spacing:.02em;text-decoration:none;color:#2a1640;background:linear-gradient(100deg,var(--dorado) 0%,var(--dorado2) 50%,var(--dorado) 100%);background-size:200% 100%;box-shadow:0 8px 26px rgba(230,192,106,.35);animation:brilloBtn 3s linear infinite;transition:transform .15s}
+.btn:active{transform:scale(.97)}
+@keyframes brilloBtn{to{background-position:-200% 0}}
+.btn.lila{color:#fff;background:linear-gradient(100deg,var(--lila-osc),#9a7fe6,var(--lila-osc));background-size:200% 100%;box-shadow:0 8px 26px rgba(122,95,196,.4)}
+
+/* Secciones */
+section{margin-top:46px}
+.titulo{font-family:var(--serif);font-weight:700;font-size:32px;line-height:1.1;text-align:center}
+.titulo em{color:var(--dorado2)}
+.sub{color:var(--gris);text-align:center;margin-top:6px;font-size:14px}
+
+/* Grilla de regalos */
+.regalos{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:22px}
+.reg{position:relative;perspective:1100px;min-height:300px}
+.reg .cara{position:absolute;inset:0;border-radius:18px;backface-visibility:hidden;-webkit-backface-visibility:hidden;transition:transform .8s cubic-bezier(.3,1.4,.5,1)}
+.reg .frente{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;background:linear-gradient(160deg,#2c1b47,#1a0f2c);border:1px solid rgba(180,155,232,.3);overflow:hidden;-webkit-tap-highlight-color:transparent}
+.mini{position:relative;width:92px;height:92px;animation:flota 3s ease-in-out infinite}
+.reg:nth-child(2n) .mini{animation-delay:-1.2s}.reg:nth-child(3n) .mini{animation-delay:-2s}
+@keyframes flota{50%{transform:translateY(-8px) rotate(-2deg)}}
+.mini .c{position:absolute;left:6px;right:6px;bottom:0;height:62px;border-radius:9px;background:var(--col)}
+.mini .t{position:absolute;left:0;right:0;top:18px;height:22px;border-radius:8px;background:var(--col2)}
+.mini .c::after,.mini .t::after{content:"";position:absolute;left:50%;top:0;bottom:0;width:16px;margin-left:-8px;background:var(--cinta)}
+.mini .m{position:absolute;left:50%;top:0;width:46px;height:24px;margin-left:-23px}
+.mini .m i{position:absolute;top:2px;width:22px;height:18px;border:5px solid var(--cinta);border-radius:50%}
+.mini .m i:first-child{left:0;transform:rotate(-18deg)}.mini .m i:last-child{right:0;transform:rotate(18deg)}
+.reg .num{font-family:var(--num);font-weight:800;font-size:13px;letter-spacing:.2em;color:var(--gris)}
+.reg .abrir{font-size:13px;font-weight:600;color:var(--dorado2);border:1px solid rgba(230,192,106,.5);padding:6px 14px;border-radius:99px}
+.reg .dorso{transform:rotateY(180deg);background:var(--card);border:1px solid rgba(230,192,106,.45);box-shadow:0 0 30px rgba(230,192,106,.18);display:flex;flex-direction:column;overflow:hidden}
+.reg.abierta .frente{transform:rotateY(-180deg)}
+.reg.abierta .dorso{transform:rotateY(0)}
+.reg.sacude .frente{animation:sacude .5s}
+@keyframes sacude{20%{transform:rotate(-6deg) scale(1.04)}40%{transform:rotate(6deg) scale(1.06)}60%{transform:rotate(-4deg)}80%{transform:rotate(3deg)}}
+.dorso .img{position:relative;aspect-ratio:1/1;background:#fff;overflow:hidden}
+.dorso .img img{width:100%;height:100%;object-fit:cover;display:block}
+.dorso .img .pct{position:absolute;top:8px;right:8px;background:#e2457a;color:#fff;font-weight:800;font-size:12px;border-radius:99px;padding:3px 9px;box-shadow:0 4px 12px rgba(226,69,122,.5)}
+.dorso .info{padding:10px 10px 12px;display:flex;flex-direction:column;gap:6px;flex:1}
+.dorso h3{font-family:var(--serif);font-size:17px;line-height:1.15;font-weight:700}
+.dorso .pr{display:flex;align-items:baseline;gap:8px}
+.dorso .antes{color:var(--gris);text-decoration:line-through;font-size:12.5px}
+.dorso .ahora{font-family:var(--num);font-weight:900;font-size:26px;color:var(--dorado2);line-height:1}
+.dorso .ahora small{font-family:var(--sans);font-size:11px;font-weight:600}
+.dorso .unico{font-size:10.5px;color:var(--gris)}
+.dorso .btn{padding:11px 8px;font-size:13.5px;border-radius:11px;margin-top:auto}
+.reg.grande{grid-column:1/-1;min-height:250px}
+.reg.grande .dorso{flex-direction:row}
+.reg.grande .dorso .img{width:44%;aspect-ratio:auto}
+.reg.grande .dorso p{font-size:12.5px;color:var(--gris)}
+
+/* Detalle al abrir */
+.detalle{font-size:12px;color:var(--gris);line-height:1.4}
+
+/* Compradoras */
+.app{background:linear-gradient(150deg,rgba(180,155,232,.18),rgba(230,192,106,.1));border:1px solid rgba(180,155,232,.4);border-radius:22px;padding:24px 18px;text-align:center}
+.app .ico{font-size:40px;display:block;animation:flota 3s ease-in-out infinite}
+.app h2{font-family:var(--serif);font-size:27px;line-height:1.15;margin:8px 0 6px}
+.app p{color:var(--lila-suave);font-size:14px;margin-bottom:16px}
+
+/* Sobre sorpresa */
+.sobre-wrap{text-align:center}
+.sobre{position:relative;width:250px;height:165px;margin:26px auto 0;display:block;-webkit-tap-highlight-color:transparent}
+.sobre .cuerpo{position:absolute;inset:0;border-radius:10px;background:linear-gradient(160deg,var(--dorado2),var(--dorado));box-shadow:0 18px 40px rgba(0,0,0,.45),0 0 40px rgba(247,220,149,.35)}
+.sobre .solapa{position:absolute;left:0;right:0;top:0;height:95px;transform-origin:top;background:linear-gradient(180deg,#f9e3a8,#d9ae52);clip-path:polygon(0 0,100% 0,50% 100%);transition:transform .7s;z-index:3}
+.sobre .sello{position:absolute;left:50%;top:70px;width:46px;height:46px;margin-left:-23px;border-radius:50%;background:radial-gradient(circle at 35% 35%,#c06aa0,#7a2f63);z-index:4;display:grid;place-items:center;font-size:20px;box-shadow:0 4px 10px rgba(0,0,0,.3);transition:opacity .3s}
+.sobre .carta{position:absolute;left:14px;right:14px;top:14px;height:130px;background:#fffaf0;border-radius:8px;z-index:2;transition:transform .9s cubic-bezier(.2,1.4,.4,1) .35s;color:#3a2457;font-family:var(--serif);font-weight:700;font-size:22px;display:grid;place-items:center;padding:10px}
+.sobre:not(.abierto){animation:tiembla 2.6s ease-in-out infinite}
+.sobre.abierto .solapa{transform:rotateX(180deg);z-index:1}
+.sobre.abierto .sello{opacity:0}
+.sobre.abierto .carta{transform:translateY(-70px)}
+.mc{display:none;margin-top:6px;background:var(--card);border:1px solid rgba(230,192,106,.45);border-radius:22px;padding:22px 18px;text-align:left}
+.mc.ver{display:block;animation:sube .6s ease}
+@keyframes sube{from{opacity:0;transform:translateY(20px)}}
+.mc .fecha{font-size:11.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--dorado2);font-weight:600}
+.mc h3{font-family:var(--serif);font-size:28px;line-height:1.1;margin:6px 0 8px}
+.mc p{color:var(--lila-suave);font-size:14px}
+.mc form{display:flex;flex-direction:column;gap:10px;margin-top:14px}
+.mc input{font:inherit;font-size:16px;padding:13px 14px;border-radius:12px;border:1px solid rgba(180,155,232,.45);background:#170e26;color:#fff}
+.mc input::placeholder{color:#8f84a8}
+.mc .ok{display:none;text-align:center;padding:12px 0 4px;font-weight:600;color:var(--dorado2)}
+.mc .err{color:#ff9db8;font-size:13px;min-height:1em}
+
+/* Barra de progreso */
+.barra{position:fixed;left:0;right:0;bottom:0;z-index:50;padding:10px max(16px,env(safe-area-inset-left)) calc(10px + env(safe-area-inset-bottom));background:rgba(18,10,28,.92);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-top:1px solid rgba(180,155,232,.25);transform:translateY(110%);transition:transform .5s}
+.barra.ver{transform:none}
+.barra .in{max-width:560px;margin:0 auto;display:flex;align-items:center;gap:12px}
+.barra .txt{flex:1;font-size:12.5px}
+.barra .txt b{color:var(--dorado2)}
+.barra .prog{height:6px;border-radius:9px;background:#2d2042;margin-top:5px;overflow:hidden}
+.barra .prog i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--lila),var(--dorado2));transition:width .6s}
+.barra button{font-size:12.5px;font-weight:700;padding:10px 12px;border-radius:11px;background:var(--lila-osc);white-space:nowrap}
+
+footer{margin-top:40px;text-align:center;font-size:12px;color:#8f84a8;line-height:1.7}
+footer b{color:var(--gris)}
+
+/* Terminó */
+body.fin .reg .btn,body.fin .gigante{pointer-events:none}
+.aviso-fin{display:none;margin-top:18px;background:#2a1a3f;border:1px solid rgba(180,155,232,.4);border-radius:16px;padding:14px;color:var(--lila-suave)}
+body.fin .aviso-fin{display:block}
+body.fin .reloj,body.fin .toca{display:none}
+
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition-duration:.01s!important}}
+@media (max-width:360px){.reg{min-height:290px}.dorso h3{font-size:15px}}
+</style>
+<script>
+(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);})(window,document,"clarity","script","y1qo4jllil");
+</script>
+</head>
+<body>
+<canvas id="cielo" aria-hidden="true"></canvas>
+<canvas id="confeti" aria-hidden="true"></canvas>
+
+<div class="cinta" aria-hidden="true"><div>
+  <span>🎁 Black Friday</span><span>Todo a 15 USD</span><span>✨ Hasta el domingo</span><span>Pago único</span><span>🎁 Black Friday</span><span>Todo a 15 USD</span><span>✨ Hasta el domingo</span><span>Pago único</span>
+  <span>🎁 Black Friday</span><span>Todo a 15 USD</span><span>✨ Hasta el domingo</span><span>Pago único</span><span>🎁 Black Friday</span><span>Todo a 15 USD</span><span>✨ Hasta el domingo</span><span>Pago único</span>
+</div></div>
+
+<main class="wrap">
+  <header class="hero">
+    <span class="kicker">Romi Manifiesta · 24 al 29 de noviembre</span>
+    <h1 class="bf">BLACK<br>FRIDAY</h1>
+    <p class="todo">todo a <b>15</b> USD</p>
+    <p class="bajada">Mis productos favoritos, cada uno a 15 USD. Solo hasta el domingo a la medianoche.</p>
+
+    <div class="reloj" id="reloj" aria-live="polite">
+      <div><b id="d">0</b><small>días</small></div>
+      <div><b id="h">00</b><small>horas</small></div>
+      <div><b id="m">00</b><small>min</small></div>
+      <div><b id="s">00</b><small>seg</small></div>
+    </div>
+    <p class="hasta">Termina el domingo 29/11 a las 23:59 (hora de Uruguay)</p>
+
+    <button class="gigante" id="gigante" aria-label="Abrir el regalo">
+      <span class="rayos"></span><span class="aura"></span>
+      <span class="caja"></span>
+      <span class="tapa"><span class="moño"><i></i><i></i></span></span>
+      <span class="premio">15 <small>USD</small></span>
+    </button>
+    <p class="toca" id="toca">👆 Tocá el regalo</p>
+    <div class="aviso-fin">El Black Friday terminó el domingo a la medianoche. Gracias por estar 💜</div>
+  </header>
+
+  <section id="regalos">
+    <h2 class="titulo">Tenés <em>6 regalos</em><br>esperándote</h2>
+    <p class="sub">Tocá cada caja para abrirla. El descuento ya viene puesto en el botón.</p>
+    <div class="regalos" id="grilla"></div>
+  </section>
+
+  <section>
+    <div class="app">
+      <span class="ico">📲</span>
+      <h2>¿Ya tenés alguno de mis productos?</h2>
+      <p>Entrá a tu app con el mail con el que compraste: ahí tenés todo lo tuyo y también las ofertas del Black Friday para sumar lo que te falta.</p>
+      <a class="btn lila" href="https://diario-es.diario21.workers.dev/?utm_source=blackfriday&amp;utm_medium=web&amp;utm_campaign=bf2026" target="_blank" rel="noopener">Entrar a mi app</a>
+    </div>
+  </section>
+
+  <section class="sobre-wrap">
+    <h2 class="titulo">Y un regalo <em>sorpresa</em></h2>
+    <p class="sub">Este no se compra. Tocá el sobre.</p>
+    <button class="sobre" id="sobre" aria-label="Abrir el sobre sorpresa">
+      <span class="cuerpo"></span>
+      <span class="carta">8 · 12 ✨</span>
+      <span class="solapa"></span>
+      <span class="sello">💌</span>
+    </button>
+    <div class="mc" id="mc">
+      <span class="fecha">Martes 8 de diciembre · en vivo y gratis</span>
+      <h3>Masterclass en vivo con Romi</h3>
+      <p>Te voy a mostrar en vivo cómo armo y vendo mis productos digitales con inteligencia artificial. Los lugares son limitados: anotate y te aviso el día y la hora.</p>
+      <form id="form-mc" novalidate>
+        <input name="n" autocomplete="given-name" placeholder="Tu nombre" maxlength="40">
+        <input name="e" type="email" autocomplete="email" inputmode="email" placeholder="Tu mail" maxlength="120" required>
+        <div class="err" id="err"></div>
+        <button class="btn" type="submit">Quiero mi lugar</button>
+      </form>
+      <div class="ok" id="ok">🎉 ¡Listo! Ya estás en la lista. Te escribo antes del 8/12.</div>
+    </div>
+  </section>
+
+  <footer>
+    <b>Pago único, sin mensualidades.</b> Precios en dólares; tu tarjeta los pasa a tu moneda.<br>
+    Ofertas válidas del 24/11 al 29/11/2026 a las 23:59 (hora de Uruguay).<br>
+    Romi Manifiesta · @romimanifiesta
+  </footer>
+</main>
+
+<div class="barra" id="barra"><div class="in">
+  <div class="txt">Abriste <b id="abiertos">0</b> de 6 regalos<div class="prog"><i id="prog"></i></div></div>
+  <button id="todos">Abrir todos 🎁</button>
+</div></div>
+
+<script>
+const FIN = new Date('2026-11-30T02:59:59Z'); // domingo 29/11 23:59:59 hora de Uruguay
+const SRC = '&src=blackfriday';
+const PRODUCTOS = [
+  {n:'Journal de Escritura Terapéutica y Creativa', img:'img/journal.webp', antes:50, txt:'Tu biblioteca para escribir, conocerte y regularte, con LIA para acompañarte.',
+   url:'https://pay.hotmart.com/Q104801413A?off=tzhz87k3&offDiscount=BLACKROMI&checkoutMode=10'+SRC, col:'#8b6bd8', col2:'#a38af0', cinta:'#f7dc95'},
+  {n:'Kit de Manifestación 2027', img:'img/kit2027.webp', antes:47, txt:'Agendas, calendario 2027, Diario de Manifestación y Diario 369.',
+   url:'https://pay.hotmart.com/A108111274R?off=13gggf0r&offDiscount=BLACKROMI&checkoutMode=10'+SRC, col:'#d0578d', col2:'#e77aa9', cinta:'#fff1c9'},
+  {n:'Diario de Evidencias + 10 bonos', img:'img/evidencias.webp', antes:47.99, txt:'Para anotar cada prueba de que lo que pedís ya está llegando.',
+   url:'https://pay.hotmart.com/B106105767R?off=fa4i3t6f&offDiscount=BLACKROMI&checkoutMode=10'+SRC, col:'#c9a24f', col2:'#e6c06a', cinta:'#7a5fc4'},
+  {n:'El Club de las Emociones', img:'img/ninos.webp', antes:37, txt:'Journals para niños: emociones, autoestima y creatividad en familia.',
+   url:'https://pay.hotmart.com/I106186292J?off=uudlui5p&checkoutMode=10'+SRC, col:'#3fa8a0', col2:'#62c5bd', cinta:'#f7dc95'},
+  {n:'NeuroMente · 14 días', img:'img/neuromente.webp', antes:87, txt:'Entrenamiento en video de 14 días: clases, audios guiados y workbook para entender tu sistema nervioso.',
+   url:'https://pay.hotmart.com/C105162759N?off=ib6spslc&offDiscount=BLACKROMI&checkoutMode=10'+SRC, col:'#4b3a8f', col2:'#6a57b8', cinta:'#f0a3c4'},
+  {n:'De 0 a 100 por día', img:'img/de0a100-portada.svg', antes:97, txt:'La guía paso a paso para vender productos digitales con anuncios, con videos y el kit para tu Claude.',
+   url:'https://de0a100.romimanfiesta.com/?utm_source=blackfriday&utm_medium=web&utm_campaign=bf2026', col:'#e2457a', col2:'#f06d98', cinta:'#f7dc95', grande:true}
+];
+
+const grilla = document.getElementById('grilla');
+PRODUCTOS.forEach((p, i) => {
+  const pct = Math.round((1 - 15 / p.antes) * 100);
+  const el = document.createElement('div');
+  el.className = 'reg' + (p.grande ? ' grande' : '');
+  el.style.cssText = `--col:${p.col};--col2:${p.col2};--cinta:${p.cinta}`;
+  el.innerHTML = `
+    <button class="cara frente" aria-label="Abrir el regalo ${i + 1}">
+      <span class="mini"><span class="c"></span><span class="t"></span><span class="m"><i></i><i></i></span></span>
+      <span class="num">REGALO ${i + 1}</span>
+      <span class="abrir">Tocá para abrir</span>
+    </button>
+    <div class="cara dorso">
+      <div class="img"><img src="${p.img}" alt="${p.n}" loading="lazy"><span class="pct">−${pct}%</span></div>
+      <div class="info">
+        <h3>${p.n}</h3>
+        ${p.grande ? `<p>${p.txt}</p>` : ''}
+        <div class="pr"><span class="ahora">15 <small>USD</small></span><span class="antes">${String(p.antes).replace('.', ',')} USD</span></div>
+        <span class="unico">Pago único, sin mensualidades</span>
+        <a class="btn" href="${p.url}" target="_blank" rel="noopener">Lo quiero a 15</a>
+      </div>
+    </div>`;
+  el.querySelector('.frente').addEventListener('click', () => abrirRegalo(el, true));
+  el.querySelector('.btn').addEventListener('click', e => { const r = e.currentTarget.getBoundingClientRect(); explota(r.left + r.width / 2, r.top, 90); });
+  grilla.appendChild(el);
+});
+
+let abiertos = 0;
+function abrirRegalo(el, conSacudon) {
+  if (el.classList.contains('abierta') || document.body.classList.contains('fin')) return;
+  const go = () => {
+    el.classList.remove('sacude'); el.classList.add('abierta');
+    const r = el.getBoundingClientRect();
+    explota(r.left + r.width / 2, r.top + r.height / 2, 120);
+    if (navigator.vibrate) navigator.vibrate(30);
+    abiertos++;
+    document.getElementById('abiertos').textContent = abiertos;
+    document.getElementById('prog').style.width = (abiertos / 6 * 100) + '%';
+    if (abiertos === 6) { document.getElementById('todos').textContent = '¡Los abriste todos! 🎉'; lluvia(); }
+  };
+  if (conSacudon) { el.classList.add('sacude'); setTimeout(go, 420); } else go();
+}
+document.getElementById('todos').addEventListener('click', () => {
+  document.querySelectorAll('.reg:not(.abierta)').forEach((el, i) => setTimeout(() => abrirRegalo(el, false), i * 260));
+  document.getElementById('regalos').scrollIntoView({behavior: 'smooth'});
+});
+
+// Regalo gigante
+const gigante = document.getElementById('gigante');
+gigante.addEventListener('click', () => {
+  if (gigante.classList.contains('abierto')) { document.getElementById('regalos').scrollIntoView({behavior: 'smooth'}); return; }
+  gigante.classList.add('abierto');
+  const r = gigante.getBoundingClientRect();
+  explota(r.left + r.width / 2, r.top + r.height / 2, 260);
+  setTimeout(lluvia, 300);
+  if (navigator.vibrate) navigator.vibrate([40, 40, 80]);
+  const t = document.getElementById('toca'); t.textContent = '🎉 ¡Todo a 15! Bajá y abrí tus regalos'; t.classList.add('listo');
+  document.getElementById('barra').classList.add('ver');
+  setTimeout(() => document.getElementById('regalos').scrollIntoView({behavior: 'smooth'}), 1700);
+});
+
+// Sobre sorpresa
+const sobre = document.getElementById('sobre');
+sobre.addEventListener('click', () => {
+  if (sobre.classList.contains('abierto')) return;
+  sobre.classList.add('abierto');
+  const r = sobre.getBoundingClientRect();
+  explota(r.left + r.width / 2, r.top, 140, ['#f7dc95', '#e6c06a', '#fff', '#f0a3c4']);
+  setTimeout(() => { const mc = document.getElementById('mc'); mc.classList.add('ver'); mc.scrollIntoView({behavior: 'smooth', block: 'center'}); }, 700);
+});
+document.getElementById('form-mc').addEventListener('submit', async e => {
+  e.preventDefault();
+  const f = e.target, err = document.getElementById('err');
+  const n = f.n.value.trim(), m = f.e.value.trim();
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(m)) { err.textContent = 'Revisá tu mail 💜'; return; }
+  err.textContent = ''; const b = f.querySelector('button'); b.disabled = true; b.textContent = 'Guardando…';
+  try {
+    const r = await fetch('https://cumple-romi.diario21.workers.dev/api/masterclass', {method: 'POST', headers: {'content-type': 'application/json'}, body: JSON.stringify({n, e: m, src: 'blackfriday'})});
+    const j = await r.json();
+    if (!r.ok) throw new Error(j.error || 'error');
+    f.style.display = 'none'; document.getElementById('ok').style.display = 'block'; lluvia();
+  } catch (x) { err.textContent = x.message && x.message !== 'error' ? x.message : 'No se pudo guardar. Probá de nuevo en un ratito 💜'; b.disabled = false; b.textContent = 'Quiero mi lugar'; }
+});
+
+// Cuenta regresiva
+const pad = n => String(n).padStart(2, '0');
+function tic() {
+  const ms = FIN - Date.now();
+  if (ms <= 0) { document.body.classList.add('fin'); document.querySelectorAll('.reg .btn').forEach(b => { b.textContent = 'Terminó'; b.removeAttribute('href'); }); return; }
+  const s = Math.floor(ms / 1000);
+  document.getElementById('d').textContent = Math.floor(s / 86400);
+  document.getElementById('h').textContent = pad(Math.floor(s % 86400 / 3600));
+  document.getElementById('m').textContent = pad(Math.floor(s % 3600 / 60));
+  document.getElementById('s').textContent = pad(s % 60);
+  setTimeout(tic, 1000);
+}
+tic();
+
+// Mostrar la barra al bajar
+addEventListener('scroll', () => { if (scrollY > 500) document.getElementById('barra').classList.add('ver'); }, {passive: true});
+
+// Confeti
+const cf = document.getElementById('confeti'), cx = cf.getContext('2d');
+let piezas = [], corriendo = false;
+const COLORES = ['#f7dc95', '#e6c06a', '#b49be8', '#f0a3c4', '#ffffff', '#8b6bd8', '#e2457a'];
+function tam() { const d = devicePixelRatio || 1; for (const c of [cf, cielo]) { c.width = innerWidth * d; c.height = innerHeight * d; c.getContext('2d').setTransform(d, 0, 0, d, 0, 0); } }
+function explota(x, y, n, cols = COLORES) {
+  if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  for (let i = 0; i < n; i++) {
+    const a = Math.random() * Math.PI * 2, v = 4 + Math.random() * 9;
+    piezas.push({x, y, vx: Math.cos(a) * v, vy: Math.sin(a) * v - 5, r: Math.random() * 6, w: 5 + Math.random() * 7, h: 8 + Math.random() * 8, c: cols[i % cols.length], g: Math.random() < .25, vida: 140 + Math.random() * 60});
+  }
+  if (!corriendo) { corriendo = true; requestAnimationFrame(pinta); }
+}
+function lluvia() { for (let k = 0; k < 6; k++) setTimeout(() => explota(Math.random() * innerWidth, -20, 45), k * 180); }
+function pinta() {
+  cx.clearRect(0, 0, innerWidth, innerHeight);
+  piezas = piezas.filter(p => p.vida-- > 0 && p.y < innerHeight + 40);
+  for (const p of piezas) {
+    p.vy += .22; p.vx *= .985; p.x += p.vx; p.y += p.vy; p.r += .12;
+    cx.save(); cx.translate(p.x, p.y); cx.rotate(p.r); cx.fillStyle = p.c;
+    if (p.g) { cx.beginPath(); cx.arc(0, 0, p.w / 2, 0, 7); cx.fill(); }
+    else cx.fillRect(-p.w / 2, -p.h / 2, p.w, p.h * Math.abs(Math.cos(p.r)));
+    cx.restore();
+  }
+  if (piezas.length) requestAnimationFrame(pinta); else { corriendo = false; cx.clearRect(0, 0, innerWidth, innerHeight); }
+}
+
+// Cielo con destellos
+const cielo = document.getElementById('cielo'), sx = cielo.getContext('2d');
+let estrellas = [];
+function sembrar() { estrellas = Array.from({length: Math.min(90, Math.round(innerWidth * innerHeight / 9000))}, () => ({x: Math.random() * innerWidth, y: Math.random() * innerHeight, r: Math.random() * 1.6 + .3, f: Math.random() * 6, v: .01 + Math.random() * .03, dy: .05 + Math.random() * .2})); }
+function cielito() {
+  sx.clearRect(0, 0, innerWidth, innerHeight);
+  for (const e of estrellas) {
+    e.f += e.v; e.y -= e.dy; if (e.y < -5) { e.y = innerHeight + 5; e.x = Math.random() * innerWidth; }
+    const a = .25 + Math.abs(Math.sin(e.f)) * .75;
+    sx.fillStyle = `rgba(247,220,149,${a})`; sx.beginPath(); sx.arc(e.x, e.y, e.r, 0, 7); sx.fill();
+    if (e.r > 1.5) { sx.strokeStyle = `rgba(255,255,255,${a * .5})`; sx.lineWidth = .6; sx.beginPath(); sx.moveTo(e.x - 5, e.y); sx.lineTo(e.x + 5, e.y); sx.moveTo(e.x, e.y - 5); sx.lineTo(e.x, e.y + 5); sx.stroke(); }
+  }
+  requestAnimationFrame(cielito);
+}
+tam(); sembrar();
+if (!matchMedia('(prefers-reduced-motion: reduce)').matches) cielito();
+addEventListener('resize', () => { tam(); sembrar(); });
+</script>
+</body>
+</html>
