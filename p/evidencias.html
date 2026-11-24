@@ -1,0 +1,232 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Diario de Evidencias + 10 bonos · Black Friday Romi Manifiesta</title>
+<meta name="description" content="Para anotar cada prueba de que lo que pedís ya está llegando, y sostener la mujer que estás decidiendo ser.">
+<meta property="og:title" content="Diario de Evidencias + 10 bonos · Black Friday">
+<meta property="og:description" content="Para anotar cada prueba de que lo que pedís ya está llegando, y sostener la mujer que estás decidiendo ser.">
+<meta property="og:image" content="https://blackfriday.romimanfiesta.com/img/evidencias.webp">
+<meta name="theme-color" content="#120a1c">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600&family=Playfair+Display:wght@700;800;900&family=Poppins:wght@300;400;500;600;700&display=swap">
+<style>
+:root{--noche:#120a1c;--card:#231638;--lila:#b49be8;--lila-osc:#7a5fc4;--lila-suave:#e9e0fb;--dorado:#e6c06a;--dorado2:#f7dc95;--rosa:#e2457a;--blanco:#fbf8ff;--gris:#b9aed0;
+  --serif:"Cormorant Garamond",Georgia,serif;--num:"Playfair Display",Georgia,serif;--sans:"Poppins",system-ui,-apple-system,"Segoe UI",sans-serif;color-scheme:dark}
+*{box-sizing:border-box;margin:0;padding:0}
+html{overflow-x:hidden;scroll-behavior:smooth}
+body{background:radial-gradient(1100px 650px at 50% -10%,#3a2160 0%,var(--noche) 55%) fixed,var(--noche);color:var(--blanco);font-family:var(--sans);font-size:15px;line-height:1.55;padding-bottom:96px;overflow-x:hidden}
+canvas#cielo,canvas#confeti{position:fixed;inset:0;width:100%;height:100%;pointer-events:none}
+canvas#cielo{z-index:0}canvas#confeti{z-index:60}
+.wrap{position:relative;z-index:2;max-width:560px;margin:0 auto;padding:0 max(16px,env(safe-area-inset-left))}
+a{color:inherit}
+.top{display:flex;justify-content:space-between;align-items:center;padding:14px 0 6px;font-size:13px}
+.top a{text-decoration:none;color:var(--lila-suave);border:1px solid rgba(180,155,232,.4);border-radius:99px;padding:6px 12px}
+.top .bf{font-weight:700;letter-spacing:.14em;color:var(--dorado2);font-size:11.5px}
+/* Carrusel */
+.carru{position:relative;margin-top:10px;border-radius:22px;overflow:hidden;background:#fff;aspect-ratio:1/1;box-shadow:0 20px 50px rgba(0,0,0,.45),0 0 0 2px rgba(230,192,106,.5)}
+.pista{display:flex;height:100%;transition:transform .55s cubic-bezier(.2,.8,.2,1);touch-action:pan-y}
+.pista img{flex:0 0 100%;width:100%;height:100%;object-fit:cover;user-select:none;-webkit-user-drag:none}
+.pista img[src$=".svg"]{object-fit:contain;background:#f1ecfa}
+.puntos{position:absolute;left:0;right:0;bottom:10px;display:flex;justify-content:center;gap:6px}
+.puntos i{width:8px;height:8px;border-radius:50%;background:rgba(42,22,64,.35);transition:.3s}
+.puntos i.on{width:22px;border-radius:9px;background:var(--rosa)}
+.sello{position:absolute;top:12px;left:12px;background:var(--rosa);color:#fff;font-weight:800;font-size:13px;border-radius:99px;padding:5px 12px;box-shadow:0 6px 16px rgba(226,69,122,.5);animation:late 1.6s ease-in-out infinite}
+@keyframes late{50%{transform:scale(1.08)}}
+h1{font-family:var(--serif);font-size:34px;line-height:1.08;margin-top:18px}
+.gancho{color:var(--lila-suave);margin-top:8px}
+/* Precio */
+.precio{margin-top:18px;background:linear-gradient(150deg,rgba(180,155,232,.18),rgba(230,192,106,.12));border:1px solid rgba(230,192,106,.5);border-radius:20px;padding:16px 16px 14px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.precio .et{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--dorado2);font-weight:700}
+.precio .ahora{font-family:var(--num);font-weight:900;font-size:46px;line-height:1;color:var(--dorado2);text-shadow:0 0 24px rgba(247,220,149,.5)}
+.precio .ahora small{font-family:var(--sans);font-size:15px;font-weight:600}
+.precio .antes{color:var(--gris);text-decoration:line-through;font-size:14px}
+.precio .unico{font-size:12px;color:var(--lila-suave)}
+.reloj{display:flex;gap:6px}
+.reloj div{background:#1b1030;border:1px solid rgba(180,155,232,.35);border-radius:10px;min-width:46px;padding:6px 4px 4px;text-align:center}
+.reloj b{display:block;font-family:var(--num);font-size:20px;line-height:1;font-variant-numeric:tabular-nums}
+.reloj small{font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--gris)}
+.btn{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;margin-top:14px;padding:16px 18px;border-radius:14px;font-weight:700;font-size:16px;text-decoration:none;color:#2a1640;background:linear-gradient(100deg,var(--dorado) 0%,var(--dorado2) 50%,var(--dorado) 100%);background-size:200% 100%;box-shadow:0 8px 26px rgba(230,192,106,.35);animation:brillo 3s linear infinite;border:0;cursor:pointer;font-family:inherit}
+@keyframes brillo{to{background-position:-200% 0}}
+.btn:active{transform:scale(.97)}
+/* Secciones */
+section{margin-top:38px}
+h2{font-family:var(--serif);font-size:28px;line-height:1.1}
+h2 em{color:var(--dorado2)}
+.cuenta{color:var(--gris);font-size:13px;margin-top:4px}
+.trae{display:grid;gap:10px;margin-top:14px}
+.it{display:flex;gap:12px;align-items:center;background:var(--card);border:1px solid rgba(180,155,232,.25);border-radius:14px;padding:12px 14px;opacity:0;transform:translateY(18px) scale(.98);transition:opacity .5s,transform .5s,border-color .3s;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.it.ver{opacity:1;transform:none}
+.it .ic{flex:none;width:34px;height:34px;border-radius:10px;display:grid;place-items:center;background:linear-gradient(135deg,var(--lila-osc),#9a7fe6);font-size:16px}
+.it b{font-weight:500;font-size:14.5px}
+.it.tocado{border-color:var(--dorado);box-shadow:0 0 18px rgba(230,192,106,.3)}
+.it.tocado .ic{background:linear-gradient(135deg,var(--dorado),var(--dorado2))}
+.mas{margin-top:10px;background:none;border:1px dashed rgba(180,155,232,.5);color:var(--lila-suave);border-radius:12px;padding:10px;width:100%;font:inherit;cursor:pointer}
+.para{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:14px}
+.para div{background:linear-gradient(160deg,#2c1b47,#1a0f2c);border:1px solid rgba(180,155,232,.3);border-radius:16px;padding:14px 12px;font-size:13.5px;opacity:0;transform:scale(.9);transition:.5s}
+.para div.ver{opacity:1;transform:none}
+.para span{display:block;font-size:22px;margin-bottom:6px}
+.como{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:14px;text-align:center}
+.como div{background:var(--card);border-radius:14px;padding:12px 6px;font-size:12.5px;border:1px solid rgba(180,155,232,.2)}
+.como span{display:block;font-size:24px;margin-bottom:4px}
+.otros{display:flex;gap:10px;overflow-x:auto;margin-top:14px;padding-bottom:8px;scroll-snap-type:x mandatory}
+.otros a{flex:0 0 140px;scroll-snap-align:start;text-decoration:none;background:var(--card);border:1px solid rgba(180,155,232,.25);border-radius:14px;overflow:hidden}
+.otros img{width:100%;aspect-ratio:1/1;object-fit:cover;background:#fff;display:block}
+.otros div{padding:8px 10px;font-size:12px;line-height:1.3}
+.otros b{display:block;color:var(--dorado2);font-family:var(--num);font-size:16px;margin-top:3px}
+footer{margin-top:34px;text-align:center;font-size:12px;color:#8f84a8;line-height:1.7}
+/* Barra fija */
+.barra{position:fixed;left:0;right:0;bottom:0;z-index:50;padding:10px max(16px,env(safe-area-inset-left)) calc(10px + env(safe-area-inset-bottom));background:rgba(18,10,28,.94);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-top:1px solid rgba(230,192,106,.35);transform:translateY(110%);transition:transform .45s}
+.barra.ver{transform:none}
+.barra .in{max-width:560px;margin:0 auto;display:flex;align-items:center;gap:12px}
+.barra .pr{font-family:var(--num);font-weight:900;font-size:24px;color:var(--dorado2);line-height:1}
+.barra .pr small{display:block;font-family:var(--sans);font-size:10.5px;font-weight:500;color:var(--gris)}
+.barra .btn{margin:0;flex:1;padding:13px 10px;font-size:15px}
+body.fin .btn{pointer-events:none;filter:grayscale(1);opacity:.6}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition-duration:.01s!important}}
+</style>
+<script>
+(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);})(window,document,"clarity","script","y1qo4jllil");
+</script>
+</head>
+<body>
+<canvas id="cielo" aria-hidden="true"></canvas>
+<canvas id="confeti" aria-hidden="true"></canvas>
+<main class="wrap">
+  <div class="top"><a href="../#regalos">← Mis regalos</a><span class="bf">🎁 BLACK FRIDAY</span></div>
+
+  <div class="carru" id="carru"><div class="pista" id="pista"></div><span class="sello" id="sello"></span><div class="puntos" id="puntos"></div></div>
+
+  <h1 id="tit"></h1>
+  <p class="gancho" id="gancho"></p>
+
+  <div class="precio">
+    <div>
+      <span class="et">Tu precio Black Friday</span>
+      <div class="ahora" id="ahora"></div>
+      <span class="antes" id="antes"></span> · <span class="unico">Pago único, sin mensualidades</span>
+    </div>
+    <div class="reloj" aria-label="Tiempo que falta">
+      <div><b id="d">0</b><small>días</small></div><div><b id="h">00</b><small>hs</small></div><div><b id="m">00</b><small>min</small></div><div><b id="s">00</b><small>seg</small></div>
+    </div>
+  </div>
+  <a class="btn comprar" id="btn1" target="_blank" rel="noopener">Lo quiero 🎁</a>
+
+  <section>
+    <h2>Todo lo que <em>trae</em></h2>
+    <p class="cuenta" id="cuenta"></p>
+    <div class="trae" id="trae"></div>
+    <button class="mas" id="mas" hidden>Ver todo</button>
+  </section>
+
+  <section>
+    <h2>Es para vos <em>si…</em></h2>
+    <div class="para" id="para"></div>
+  </section>
+
+  <section>
+    <h2>Cómo lo <em>recibís</em></h2>
+    <div class="como">
+      <div><span>💳</span>Pagás una sola vez</div>
+      <div><span>📩</span>Te llega al instante a tu mail</div>
+      <div><span>📱</span>Lo usás en el celu o lo imprimís</div>
+    </div>
+    <a class="btn comprar" id="btn2" target="_blank" rel="noopener"></a>
+  </section>
+
+  <section>
+    <h2>Tus otros <em>regalos</em></h2>
+    <div class="otros" id="otros"></div>
+  </section>
+
+  <footer>Oferta válida hasta el domingo 29/11/2026 a las 23:59 (hora de Uruguay).<br>Precios en dólares; tu tarjeta los pasa a tu moneda.<br>Romi Manifiesta · @romimanifiesta</footer>
+</main>
+
+<div class="barra" id="barra"><div class="in">
+  <div class="pr" id="bpr"></div>
+  <a class="btn comprar" id="btn3" target="_blank" rel="noopener"></a>
+</div></div>
+
+<script>
+const P = {"n": "Diario de Evidencias + 10 bonos", "antes": 47.99, "precio": 15, "gancho": "Para anotar cada prueba de que lo que pedís ya está llegando, y sostener la mujer que estás decidiendo ser.", "fotos": ["../img/evidencias.webp", "img/evid.jpg"], "trae": ["Diario de Evidencias", "Paso a paso para aprovechar cada espacio del diario", "Registro de tus avances y de cada señal", "+10 bonos de regalo", "Acceso a todos los bonos futuros"], "para": ["Pedís y después te olvidás de mirar lo que llegó", "Querés fortalecer tu confianza", "Necesitás pruebas de que vas avanzando", "Ya manifestás y querés ir un paso más"], "url": "https://pay.hotmart.com/B106105767R?off=fa4i3t6f&offDiscount=BLACKROMI&checkoutMode=10&src=blackfriday-pagina", "imp": null, "otros": [{"slug": "journal", "n": "Journal de Escritura Terapéutica y Creativa", "foto": "../img/journal.webp", "precio": 15}, {"slug": "kit-2027", "n": "Kit de Manifestación 2027", "foto": "../img/kit2027.webp", "precio": 15}, {"slug": "club-de-las-emociones", "n": "El Club de las Emociones", "foto": "../img/ninos.webp", "precio": 15}, {"slug": "neuromente", "n": "NeuroMente · 14 días", "foto": "../img/neuromente.webp", "precio": 15}, {"slug": "de-0-a-100", "n": "De 0 a 100 por día", "foto": "../img/de0a100-portada.svg", "precio": 30}]};
+const FIN = new Date('2026-11-30T02:59:59Z');
+let EUROPA = false;
+try { EUROPA = /^Europe\//.test(Intl.DateTimeFormat().resolvedOptions().timeZone) || /[?&]eu=1/.test(location.search); } catch (e) {}
+const link = EUROPA && P.imp ? P.imp : P.url;
+const $ = id => document.getElementById(id);
+const pct = Math.round((1 - P.precio / P.antes) * 100);
+const coma = n => String(n).replace('.', ',');
+
+$('tit').textContent = P.n;
+$('gancho').textContent = P.gancho;
+$('sello').textContent = '−' + pct + ' %';
+$('ahora').innerHTML = P.precio + ' <small>USD</small>';
+$('antes').textContent = 'antes ' + coma(P.antes) + ' USD';
+$('bpr').innerHTML = P.precio + ' USD<small>pago único</small>';
+$('btn2').textContent = 'Lo quiero a ' + P.precio + ' USD';
+$('btn3').textContent = 'Lo quiero 🎁';
+document.querySelectorAll('.comprar').forEach(b => {
+  b.href = link;
+  b.addEventListener('click', e => { const r = b.getBoundingClientRect(); explota(r.left + r.width / 2, r.top, 110); });
+});
+
+// Carrusel que pasa solo y se desliza con el dedo
+const pista = $('pista'), puntos = $('puntos');
+P.fotos.forEach((f, i) => {
+  const im = document.createElement('img'); im.src = f; im.alt = P.n; im.loading = i ? 'lazy' : 'eager'; pista.appendChild(im);
+  const p = document.createElement('i'); puntos.appendChild(p);
+});
+let idx = 0, auto;
+function ir(n) { idx = (n + P.fotos.length) % P.fotos.length; pista.style.transform = `translateX(${-idx * 100}%)`; [...puntos.children].forEach((p, i) => p.classList.toggle('on', i === idx)); }
+function arrancar() { clearInterval(auto); if (P.fotos.length > 1) auto = setInterval(() => ir(idx + 1), 3200); }
+ir(0); arrancar();
+let x0 = null;
+pista.addEventListener('touchstart', e => { x0 = e.touches[0].clientX; }, {passive: true});
+pista.addEventListener('touchend', e => { if (x0 === null) return; const dx = e.changedTouches[0].clientX - x0; if (Math.abs(dx) > 40) { ir(idx + (dx < 0 ? 1 : -1)); arrancar(); } x0 = null; });
+$('carru').addEventListener('click', () => { ir(idx + 1); arrancar(); });
+
+// Lo que trae: aparece al bajar, se ilumina al tocar
+const ICONOS = ['✨', '📖', '💜', '🌙', '🎧', '📝', '🌸', '⭐', '🎁', '🧠', '💫', '🌿'];
+const trae = $('trae'), MAX = 8;
+P.trae.forEach((t, i) => {
+  const d = document.createElement('div'); d.className = 'it'; if (i >= MAX) d.hidden = true;
+  d.innerHTML = `<span class="ic">${ICONOS[i % ICONOS.length]}</span><b></b>`; d.querySelector('b').textContent = t;
+  d.addEventListener('click', () => { d.classList.toggle('tocado'); if (navigator.vibrate) navigator.vibrate(15); });
+  trae.appendChild(d);
+});
+$('cuenta').textContent = P.trae.length + ' cosas adentro · tocá cada una';
+if (P.trae.length > MAX) { const m = $('mas'); m.hidden = false; m.textContent = 'Ver las ' + (P.trae.length - MAX) + ' que faltan'; m.onclick = () => { trae.querySelectorAll('.it[hidden]').forEach((d, i) => { d.hidden = false; setTimeout(() => d.classList.add('ver'), 60 * i); }); m.remove(); }; }
+const para = $('para');
+P.para.forEach((t, i) => { const d = document.createElement('div'); d.innerHTML = `<span>${['💭', '🌊', '✍️', '💛'][i % 4]}</span>`; d.append(t); para.appendChild(d); });
+const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { const sib = [...e.target.parentNode.children].indexOf(e.target); setTimeout(() => e.target.classList.add('ver'), 70 * (sib % 6)); io.unobserve(e.target); } }), {threshold: .2});
+document.querySelectorAll('.it:not([hidden]), .para div').forEach(el => io.observe(el));
+
+// Otros regalos
+P.otros.forEach(o => { const a = document.createElement('a'); a.href = o.slug + '.html'; a.innerHTML = `<img alt="" loading="lazy"><div><span></span><b>${o.precio} USD</b></div>`; a.querySelector('img').src = o.foto; a.querySelector('span').textContent = o.n; $('otros').appendChild(a); });
+
+// Barra fija al bajar
+addEventListener('scroll', () => $('barra').classList.toggle('ver', scrollY > 420), {passive: true});
+
+// Cuenta regresiva
+const pad = n => String(n).padStart(2, '0');
+(function tic() {
+  const ms = FIN - Date.now();
+  if (ms <= 0) { document.body.classList.add('fin'); document.querySelectorAll('.comprar').forEach(b => { b.textContent = 'Terminó'; b.removeAttribute('href'); }); return; }
+  const s = Math.floor(ms / 1000);
+  $('d').textContent = Math.floor(s / 86400); $('h').textContent = pad(Math.floor(s % 86400 / 3600)); $('m').textContent = pad(Math.floor(s % 3600 / 60)); $('s').textContent = pad(s % 60);
+  setTimeout(tic, 1000);
+})();
+
+// Confeti y estrellas
+const cf = $('confeti'), cx = cf.getContext('2d'), cielo = $('cielo'), sx = cielo.getContext('2d');
+let piezas = [], corriendo = false, estrellas = [];
+const COL = ['#f7dc95', '#e6c06a', '#b49be8', '#f0a3c4', '#ffffff', '#e2457a'];
+function tam() { const d = devicePixelRatio || 1; for (const c of [cf, cielo]) { c.width = innerWidth * d; c.height = innerHeight * d; c.getContext('2d').setTransform(d, 0, 0, d, 0, 0); } estrellas = Array.from({length: 60}, () => ({x: Math.random() * innerWidth, y: Math.random() * innerHeight, r: Math.random() * 1.5 + .3, f: Math.random() * 6})); }
+function explota(x, y, n) { if (matchMedia('(prefers-reduced-motion: reduce)').matches) return; for (let i = 0; i < n; i++) { const a = Math.random() * 6.28, v = 4 + Math.random() * 8; piezas.push({x, y, vx: Math.cos(a) * v, vy: Math.sin(a) * v - 5, r: 0, w: 5 + Math.random() * 6, h: 8 + Math.random() * 7, c: COL[i % COL.length], vida: 130}); } if (!corriendo) { corriendo = true; requestAnimationFrame(pinta); } }
+function pinta() { cx.clearRect(0, 0, innerWidth, innerHeight); piezas = piezas.filter(p => p.vida-- > 0); for (const p of piezas) { p.vy += .22; p.x += p.vx; p.y += p.vy; p.r += .12; cx.save(); cx.translate(p.x, p.y); cx.rotate(p.r); cx.fillStyle = p.c; cx.fillRect(-p.w / 2, -p.h / 2, p.w, p.h * Math.abs(Math.cos(p.r))); cx.restore(); } if (piezas.length) requestAnimationFrame(pinta); else corriendo = false; }
+function brillar() { sx.clearRect(0, 0, innerWidth, innerHeight); for (const e of estrellas) { e.f += .02; sx.fillStyle = `rgba(247,220,149,${.25 + Math.abs(Math.sin(e.f)) * .7})`; sx.beginPath(); sx.arc(e.x, e.y, e.r, 0, 7); sx.fill(); } requestAnimationFrame(brillar); }
+tam(); addEventListener('resize', tam); if (!matchMedia('(prefers-reduced-motion: reduce)').matches) brillar();
+setTimeout(() => { const r = $('carru').getBoundingClientRect(); explota(r.left + r.width / 2, r.top + 40, 70); }, 500);
+</script>
+</body>
+</html>
