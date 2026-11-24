@@ -91,7 +91,7 @@ section{margin-top:46px}
 
 /* Grilla de regalos */
 .regalos{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:22px}
-.reg{position:relative;perspective:1100px;min-height:300px}
+.reg{position:relative;perspective:1100px;min-height:336px}
 .reg .cara{position:absolute;inset:0;border-radius:18px;backface-visibility:hidden;-webkit-backface-visibility:hidden;transition:transform .8s cubic-bezier(.3,1.4,.5,1)}
 .reg .frente{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;background:linear-gradient(160deg,#2c1b47,#1a0f2c);border:1px solid rgba(180,155,232,.3);overflow:hidden;-webkit-tap-highlight-color:transparent}
 .mini{position:relative;width:92px;height:92px;animation:flota 3s ease-in-out infinite}
@@ -121,7 +121,7 @@ section{margin-top:46px}
 .dorso .ahora small{font-family:var(--sans);font-size:11px;font-weight:600}
 .dorso .unico{font-size:10.5px;color:var(--gris)}
 .dorso .btn{padding:11px 8px;font-size:13.5px;border-radius:11px;margin-top:auto}
-.reg.grande{grid-column:1/-1;min-height:250px}
+.reg.grande{grid-column:1/-1;min-height:296px}
 .reg.grande .dorso{flex-direction:row}
 .reg.grande .dorso .img{width:44%;aspect-ratio:auto}
 .reg.grande .dorso p{font-size:12.5px;color:var(--gris)}
@@ -210,7 +210,21 @@ body.fin .aviso-fin{display:block}
 body.fin .reloj,body.fin .toca{display:none}
 
 @media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition-duration:.01s!important}}
-@media (max-width:360px){.reg{min-height:290px}.dorso h3{font-size:15px}}
+@media (max-width:360px){.reg{min-height:326px}.dorso h3{font-size:15px}}
+
+/* Ver qué trae: la página del producto adentro de la web */
+.ver{font-size:12.5px;font-weight:600;color:var(--lila-suave);background:rgba(180,155,232,.14);border:1px solid rgba(180,155,232,.45);border-radius:10px;padding:8px 6px;width:100%;animation:late 2.4s ease-in-out infinite}
+.reg.grande .ver{margin-top:0}
+.visor{position:fixed;inset:0;z-index:60;display:flex;flex-direction:column;background:#120a1f;transform:translateY(100%);transition:transform .45s cubic-bezier(.2,1.1,.4,1)}
+.visor.ver-abierto{transform:none}
+.visor .tope{display:flex;align-items:center;gap:10px;padding:10px 12px;background:linear-gradient(90deg,#000,#2a1640 55%,#000);border-bottom:2px solid var(--dorado)}
+.visor .tope .bf{font-family:var(--num);font-weight:900;font-size:12px;letter-spacing:.14em;color:#000;background:linear-gradient(90deg,var(--dorado),var(--dorado2));border-radius:6px;padding:4px 8px;white-space:nowrap}
+.visor .tope .que{flex:1;font-size:12.5px;line-height:1.3;color:#fff}
+.visor .tope .que b{color:var(--dorado2)}
+.visor .tope .cerrar{position:static;flex:none}
+.visor iframe{flex:1;width:100%;border:0;background:#fff}
+.visor .pie{padding:10px 12px calc(10px + env(safe-area-inset-bottom));background:#120a1f;border-top:1px solid rgba(230,192,106,.4)}
+.visor .pie .btn{padding:13px 10px}
 </style>
 <script>
 (function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);})(window,document,"clarity","script","y1qo4jllil");
@@ -303,6 +317,16 @@ body.fin .reloj,body.fin .toca{display:none}
   </div>
 </div></div>
 
+<div class="visor" id="visor" aria-hidden="true">
+  <div class="tope">
+    <span class="bf">BLACK FRIDAY</span>
+    <span class="que" id="visor-que"></span>
+    <button class="cerrar" id="visor-cerrar" aria-label="Volver a los regalos">✕</button>
+  </div>
+  <iframe id="visor-pag" title="Qué trae este producto" loading="lazy"></iframe>
+  <div class="pie"><a class="btn" id="visor-btn" target="_blank" rel="noopener"></a></div>
+</div>
+
 <div class="barra" id="barra"><div class="in">
   <div class="txt">Abriste <b id="abiertos">0</b> de 6 regalos<div class="prog"><i id="prog"></i></div></div>
   <button id="todos">Abrir todos 🎁</button>
@@ -312,17 +336,17 @@ body.fin .reloj,body.fin .toca{display:none}
 const FIN = new Date('2026-11-30T02:59:59Z'); // domingo 29/11 23:59:59 hora de Uruguay
 const SRC = '&src=blackfriday';
 const PRODUCTOS = [
-  {n:'Journal de Escritura Terapéutica y Creativa', img:'img/journal.webp', antes:50, txt:'Tu biblioteca para escribir, conocerte y regularte, con LIA para acompañarte.',
+  {n:'Journal de Escritura Terapéutica y Creativa', img:'img/journal.webp', pag:'https://jounalterapeutico.romimanfiesta.com/', antes:50, txt:'Tu biblioteca para escribir, conocerte y regularte, con LIA para acompañarte.',
    url:'https://pay.hotmart.com/Q104801413A?off=tzhz87k3&offDiscount=BLACKROMI&checkoutMode=10'+SRC, imp:'https://journal-de-escritura-terapeutica-y-creativa.impultienda.ar/?cupon=BLACKROMI14', col:'#8b6bd8', col2:'#a38af0', cinta:'#f7dc95'},
-  {n:'Kit de Manifestación 2027', img:'img/kit2027.webp', antes:47, txt:'Agendas, calendario 2027, Diario de Manifestación y Diario 369.',
+  {n:'Kit de Manifestación 2027', img:'img/kit2027.webp', pag:'https://manifestacion.romimanfiesta.com/', antes:47, txt:'Agendas, calendario 2027, Diario de Manifestación y Diario 369.',
    url:'https://pay.hotmart.com/A108111274R?off=13gggf0r&offDiscount=BLACKROMI&checkoutMode=10'+SRC, imp:'https://journal-de-escritura-terapeutica-y-creativa.impultienda.ar/checkout?p=8ab63d7d-bc2d-411f-a533-76cbef30f46f&cupon=BLACKROMI16', col:'#d0578d', col2:'#e77aa9', cinta:'#fff1c9'},
-  {n:'Diario de Evidencias + 10 bonos', img:'img/evidencias.webp', antes:47.99, txt:'Para anotar cada prueba de que lo que pedís ya está llegando.',
+  {n:'Diario de Evidencias + 10 bonos', img:'img/evidencias.webp', pag:'https://diariodeevidencias.romimanfiesta.com/', antes:47.99, txt:'Para anotar cada prueba de que lo que pedís ya está llegando.',
    url:'https://pay.hotmart.com/B106105767R?off=fa4i3t6f&offDiscount=BLACKROMI&checkoutMode=10'+SRC, col:'#c9a24f', col2:'#e6c06a', cinta:'#7a5fc4'},
-  {n:'El Club de las Emociones', img:'img/ninos.webp', antes:37, txt:'Journals para niños: emociones, autoestima y creatividad en familia.',
+  {n:'El Club de las Emociones', img:'img/ninos.webp', pag:'https://peques.romimanfiesta.com/', antes:37, txt:'Journals para niños: emociones, autoestima y creatividad en familia.',
    url:'https://pay.hotmart.com/I106186292J?off=uudlui5p&checkoutMode=10'+SRC, col:'#3fa8a0', col2:'#62c5bd', cinta:'#f7dc95'},
-  {n:'NeuroMente · 14 días', img:'img/neuromente.webp', antes:87, txt:'Entrenamiento en video de 14 días: clases, audios guiados y workbook para entender tu sistema nervioso.',
+  {n:'NeuroMente · 14 días', img:'img/neuromente.webp', pag:'https://neuromentecyber.romimanfiesta.com/', antes:87, txt:'Entrenamiento en video de 14 días: clases, audios guiados y workbook para entender tu sistema nervioso.',
    url:'https://pay.hotmart.com/C105162759N?off=ib6spslc&offDiscount=BLACKROMI&checkoutMode=10'+SRC, imp:'https://journal-de-escritura-terapeutica-y-creativa.impultienda.ar/checkout?p=7d576cad-448d-4851-a443-43c55607d8c0&cupon=BLACKROMI79', col:'#4b3a8f', col2:'#6a57b8', cinta:'#f0a3c4'},
-  {n:'De 0 a 100 por día', img:'img/de0a100-portada.svg', antes:97, precio:30, txt:'La guía paso a paso para vender productos digitales con anuncios, con videos y el kit para tu Claude.',
+  {n:'De 0 a 100 por día', img:'img/de0a100-portada.svg', pag:'https://de0a100.romimanfiesta.com/', antes:97, precio:30, txt:'La guía paso a paso para vender productos digitales con anuncios, con videos y el kit para tu Claude.',
    url:'https://de0a100.romimanfiesta.com/checkout?cupon=BLACKROMI30', col:'#e2457a', col2:'#f06d98', cinta:'#f7dc95', grande:true}
 ];
 
@@ -348,13 +372,31 @@ PRODUCTOS.forEach((p, i) => {
         ${p.grande ? `<p>${p.txt}</p>` : ''}
         <div class="pr"><span class="ahora">${pr} <small>USD</small></span><span class="antes">${String(p.antes).replace('.', ',')} USD</span></div>
         <span class="unico">Pago único, sin mensualidades</span>
+        <button class="ver" type="button">👀 Ver qué trae</button>
         <a class="btn" href="${EUROPA && p.imp ? p.imp : p.url}" target="_blank" rel="noopener">Lo quiero a ${pr}</a>
       </div>
     </div>`;
   el.querySelector('.frente').addEventListener('click', () => abrirRegalo(el, true));
+  el.querySelector('.ver').addEventListener('click', () => abrirVisor(p, pr, el.querySelector('.btn').href));
   el.querySelector('.btn').addEventListener('click', e => { const r = e.currentTarget.getBoundingClientRect(); explota(r.left + r.width / 2, r.top, 90); });
   grilla.appendChild(el);
 });
+
+// Ver qué trae: abre la página del producto adentro, con el precio de Black Friday arriba y abajo
+const visor = document.getElementById('visor'), visorPag = document.getElementById('visor-pag');
+function abrirVisor(p, pr, compra) {
+  document.getElementById('visor-que').innerHTML = `${p.n}: hoy <b>${pr} USD</b> <s style="opacity:.6">${String(p.antes).replace('.', ',')}</s><br><small style="opacity:.8">Para llevarlo a ${pr}, usá el botón de abajo 👇</small>`;
+  const b = document.getElementById('visor-btn');
+  b.textContent = `Lo quiero a ${pr} USD 🎁`; b.href = compra;
+  visorPag.src = p.pag;
+  visor.classList.add('ver-abierto'); visor.setAttribute('aria-hidden', 'false'); document.body.classList.add('modal-abierto');
+}
+function cerrarVisor() {
+  visor.classList.remove('ver-abierto'); visor.setAttribute('aria-hidden', 'true'); document.body.classList.remove('modal-abierto');
+  setTimeout(() => { visorPag.src = 'about:blank'; }, 450);
+}
+document.getElementById('visor-cerrar').addEventListener('click', cerrarVisor);
+document.getElementById('visor-btn').addEventListener('click', e => { if (document.body.classList.contains('fin')) e.preventDefault(); });
 
 let abiertos = 0;
 function abrirRegalo(el, conSacudon) {
