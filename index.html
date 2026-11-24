@@ -257,18 +257,9 @@ body.fin .reloj,body.fin .toca{display:none}
     <div class="regalos" id="grilla"></div>
   </section>
 
-  <section>
-    <div class="app">
-      <span class="ico">📲</span>
-      <h2>¿Ya tenés alguno de mis productos?</h2>
-      <p>Entrá a tu app con el mail con el que compraste: ahí tenés todo lo tuyo y también las ofertas del Black Friday para sumar lo que te falta.</p>
-      <a class="btn lila" href="https://diario-es.diario21.workers.dev/?utm_source=blackfriday&amp;utm_medium=web&amp;utm_campaign=bf2026" target="_blank" rel="noopener">Entrar a mi app</a>
-    </div>
-  </section>
-
   <section class="sobre-wrap">
-    <h2 class="titulo">Y una <em>sorpresa</em> 💌</h2>
-    <p class="sub">Tocá el sobre.</p>
+    <h2 class="titulo">Primera tanda de mi <em>masterclass</em> ✨</h2>
+    <p class="sub">Solo durante el Black Friday. Tocá el sobre.</p>
     <button class="sobre" id="sobre" aria-label="Abrir el sobre sorpresa">
       <span class="cuerpo"></span>
       <span class="carta">8 · 12 ✨</span>
@@ -276,16 +267,16 @@ body.fin .reloj,body.fin .toca{display:none}
       <span class="sello">💌</span>
     </button>
     <div class="mc" id="mc">
-      <span class="fecha">Martes 8 de diciembre · en vivo</span>
-      <h3>Masterclass en vivo con Romi</h3>
-      <p>Estoy preparando algo muy especial. Anotate en la lista de espera y te aviso antes que a nadie, con todos los detalles.</p>
+      <span class="fecha">Primera tanda · precio Black Friday</span>
+      <h3>La gran masterclass en vivo de Romi</h3>
+      <p>Estoy preparando mi gran masterclass en vivo para el 8 de diciembre. Si te anotás ahora, entrás en la primera tanda con el precio especial del Black Friday, antes que nadie.</p>
       <form id="form-mc" novalidate>
         <input name="n" autocomplete="given-name" placeholder="Tu nombre" maxlength="40">
         <input name="e" type="email" autocomplete="email" inputmode="email" placeholder="Tu mail" maxlength="120" required>
         <div class="err" id="err"></div>
-        <button class="btn" type="submit">Anotarme en la lista</button>
+        <button class="btn" type="submit">Quiero entrar en la primera tanda</button>
       </form>
-      <div class="ok" id="ok">🎉 ¡Listo! Ya estás en la lista de espera. Te escribo antes del 8/12.</div>
+      <div class="ok" id="ok">🎉 ¡Listo! Estás en la primera tanda. Te escribo con todos los detalles y tu precio Black Friday.</div>
     </div>
   </section>
 
@@ -505,7 +496,7 @@ document.getElementById('form-mc').addEventListener('submit', async e => {
     const j = await r.json();
     if (!r.ok) throw new Error(j.error || 'error');
     f.style.display = 'none'; document.getElementById('ok').style.display = 'block'; lluvia();
-  } catch (x) { err.textContent = x.message && x.message !== 'error' ? x.message : 'No se pudo guardar. Probá de nuevo en un ratito 💜'; b.disabled = false; b.textContent = 'Anotarme en la lista'; }
+  } catch (x) { err.textContent = x.message && x.message !== 'error' ? x.message : 'No se pudo guardar. Probá de nuevo en un ratito 💜'; b.disabled = false; b.textContent = 'Quiero entrar en la primera tanda'; }
 });
 
 // Cuenta regresiva
