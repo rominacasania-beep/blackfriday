@@ -21,7 +21,8 @@
   color-scheme:dark;
 }
 *{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
+html{scroll-behavior:smooth;overflow-x:hidden}
+.hero{overflow-x:clip}
 body{background:radial-gradient(1200px 700px at 50% -10%,#3a2160 0%,var(--noche) 55%) fixed,var(--noche);color:var(--blanco);font-family:var(--sans);font-size:15px;line-height:1.55;overflow-x:hidden;padding-bottom:92px}
 canvas#cielo,canvas#confeti{position:fixed;inset:0;width:100%;height:100%;pointer-events:none}
 canvas#cielo{z-index:0}canvas#confeti{z-index:60}
@@ -170,7 +171,9 @@ section{margin-top:46px}
 /* Ruleta */
 .ruleta-wrap{text-align:center}
 .ruleta{position:relative;width:min(330px,88vw);aspect-ratio:1;margin:26px auto 0}
-.ruleta svg{position:absolute;inset:7%;width:86%;height:86%;border-radius:50%;box-shadow:0 0 0 6px #2a1640,0 0 40px rgba(247,220,149,.45);transition:transform 6s cubic-bezier(.12,.75,.12,1)}
+.giro{position:absolute;inset:7%;border-radius:50%;animation:idle 16s linear infinite}
+@keyframes idle{to{transform:rotate(360deg)}}
+.ruleta svg{position:absolute;inset:0;width:100%;height:100%;border-radius:50%;box-shadow:0 0 0 6px #2a1640,0 0 40px rgba(247,220,149,.45);transition:transform 6s cubic-bezier(.12,.75,.12,1)}
 .luces{position:absolute;inset:0;border-radius:50%;background:radial-gradient(circle,transparent 58%,#3a2160 59%,#2a1640 70%,transparent 71%)}
 .luces i{position:absolute;left:50%;top:50%;width:11px;height:11px;margin:-5.5px;border-radius:50%;background:var(--dorado2);box-shadow:0 0 10px var(--dorado2);animation:luz 1s steps(1) infinite}
 .luces i:nth-child(odd){animation-delay:.5s}
@@ -186,6 +189,16 @@ section{margin-top:46px}
 .ganaste p{color:var(--lila-suave)}
 .ganaste strong{color:var(--dorado2)}
 #regalos.bloqueado{display:none}
+.modal{position:fixed;inset:0;z-index:55;display:flex;align-items:center;justify-content:center;padding:16px;background:radial-gradient(circle at 50% 40%,rgba(58,33,96,.96),rgba(10,5,18,.97));opacity:0;pointer-events:none;transition:opacity .45s}
+.modal.ver{opacity:1;pointer-events:auto}
+.modal-in{position:relative;width:100%;max-width:420px;max-height:100%;overflow:auto;padding:14px 4px 18px;transform:scale(.6);transition:transform .6s cubic-bezier(.2,1.6,.4,1)}
+.modal.ver .modal-in{transform:none}
+.cerrar{position:absolute;top:0;right:0;width:38px;height:38px;border-radius:50%;background:rgba(255,255,255,.1);font-size:18px;color:#fff}
+.chip{display:inline-block;font-size:11px;font-weight:700;letter-spacing:.16em;color:#2a1640;background:linear-gradient(90deg,var(--dorado),var(--dorado2));border-radius:99px;padding:5px 12px;margin-bottom:10px;animation:late 1.4s ease-in-out infinite}
+.modal .titulo{font-size:30px}
+.modal .ruleta{margin-top:16px}
+.ganaste .btn{margin-top:14px}
+body.modal-abierto{overflow:hidden}
 
 footer{margin-top:40px;text-align:center;font-size:12px;color:#8f84a8;line-height:1.7}
 footer b{color:var(--gris)}
@@ -237,24 +250,9 @@ body.fin .reloj,body.fin .toca{display:none}
     <div class="aviso-fin">El Black Friday terminó el domingo a la medianoche. Gracias por estar 💜</div>
   </header>
 
-  <section id="ruleta" class="ruleta-wrap">
-    <h2 class="titulo">Girá la <em>ruleta</em><br>y descubrí tu descuento</h2>
-    <p class="sub" id="ru-sub">Tenés un solo giro. Hay descuentos de hasta el 100 %.</p>
-    <div class="ruleta">
-      <div class="luces" id="luces"></div>
-      <div class="puntero"></div>
-      <svg id="rueda" viewBox="-110 -110 220 220" aria-hidden="true"></svg>
-      <button class="centro" id="girar">GIRAR</button>
-    </div>
-    <div class="ganaste" id="ganaste">
-      <span>🎉 ¡Ganaste!</span>
-      <b>70 % OFF</b>
-      <p>Tu descuento ya quedó guardado y aplicado en cada botón, hasta el domingo. Abrí tus regalos 👇</p>
-    </div>
-  </section>
 
   <section id="regalos" class="bloqueado">
-    <h2 class="titulo">Tenés <em>5 regalos</em><br>esperándote</h2>
+    <h2 class="titulo">Tenés <em>6 regalos</em><br>esperándote</h2>
     <p class="sub">Tocá cada caja para abrirla. El descuento ya viene puesto en el botón.</p>
     <div class="regalos" id="grilla"></div>
   </section>
@@ -298,8 +296,27 @@ body.fin .reloj,body.fin .toca{display:none}
   </footer>
 </main>
 
+<div class="modal" id="modal" aria-hidden="true"><div class="modal-in ruleta-wrap" id="ruleta">
+  <button class="cerrar" id="cerrar" aria-label="Cerrar">✕</button>
+  <span class="chip">🎁 TU REGALO ES UN JUEGO</span>
+  <h2 class="titulo">Girá la <em>ruleta</em><br>y descubrí tu descuento</h2>
+  <p class="sub" id="ru-sub">Tenés <b>1 solo giro</b>. Hay descuentos de hasta el 100 %.</p>
+  <div class="ruleta">
+    <div class="luces" id="luces"></div>
+    <div class="puntero"></div>
+    <div class="giro" id="giro"><svg id="rueda" viewBox="-110 -110 220 220" aria-hidden="true"></svg></div>
+    <button class="centro" id="girar">GIRAR</button>
+  </div>
+  <div class="ganaste" id="ganaste">
+    <span>🎉 ¡Ganaste!</span>
+    <b>70 % OFF</b>
+    <p>Tu descuento quedó guardado y ya está aplicado en cada botón, hasta el domingo.</p>
+    <button class="btn" id="ver-precios">Ver todos mis precios 🎁</button>
+  </div>
+</div></div>
+
 <div class="barra" id="barra"><div class="in">
-  <div class="txt">Abriste <b id="abiertos">0</b> de 5 regalos<div class="prog"><i id="prog"></i></div></div>
+  <div class="txt">Abriste <b id="abiertos">0</b> de 6 regalos<div class="prog"><i id="prog"></i></div></div>
   <button id="todos">Abrir todos 🎁</button>
 </div></div>
 
@@ -316,7 +333,9 @@ const PRODUCTOS = [
   {n:'El Club de las Emociones', img:'img/ninos.webp', antes:37, txt:'Journals para niños: emociones, autoestima y creatividad en familia.',
    url:'https://pay.hotmart.com/I106186292J?off=uudlui5p&checkoutMode=10'+SRC, col:'#3fa8a0', col2:'#62c5bd', cinta:'#f7dc95'},
   {n:'NeuroMente · 14 días', img:'img/neuromente.webp', antes:87, txt:'Entrenamiento en video de 14 días: clases, audios guiados y workbook para entender tu sistema nervioso.',
-   url:'https://pay.hotmart.com/C105162759N?off=ib6spslc&offDiscount=BLACKROMI&checkoutMode=10'+SRC, imp:'https://journal-de-escritura-terapeutica-y-creativa.impultienda.ar/checkout?p=7d576cad-448d-4851-a443-43c55607d8c0&cupon=BLACKROMI79', col:'#4b3a8f', col2:'#6a57b8', cinta:'#f0a3c4', grande:true}
+   url:'https://pay.hotmart.com/C105162759N?off=ib6spslc&offDiscount=BLACKROMI&checkoutMode=10'+SRC, imp:'https://journal-de-escritura-terapeutica-y-creativa.impultienda.ar/checkout?p=7d576cad-448d-4851-a443-43c55607d8c0&cupon=BLACKROMI79', col:'#4b3a8f', col2:'#6a57b8', cinta:'#f0a3c4'},
+  {n:'De 0 a 100 por día', img:'img/de0a100-portada.svg', antes:97, precio:30, txt:'La guía paso a paso para vender productos digitales con anuncios, con videos y el kit para tu Claude.',
+   url:'https://de0a100.romimanfiesta.com/checkout?cupon=BLACKROMI30', col:'#e2457a', col2:'#f06d98', cinta:'#f7dc95', grande:true}
 ];
 
 // Europa compra por Impultienda (cupones BLACKROMI14/16/79); el resto por Hotmart
@@ -324,7 +343,7 @@ let EUROPA = false;
 try { EUROPA = /^Europe\//.test(Intl.DateTimeFormat().resolvedOptions().timeZone) || /[?&]eu=1/.test(location.search); } catch (e) {}
 const grilla = document.getElementById('grilla');
 PRODUCTOS.forEach((p, i) => {
-  const pct = Math.round((1 - 15 / p.antes) * 100);
+  const pr = p.precio || 15, pct = Math.round((1 - pr / p.antes) * 100);
   const el = document.createElement('div');
   el.className = 'reg' + (p.grande ? ' grande' : '');
   el.style.cssText = `--col:${p.col};--col2:${p.col2};--cinta:${p.cinta}`;
@@ -339,9 +358,9 @@ PRODUCTOS.forEach((p, i) => {
       <div class="info">
         <h3>${p.n}</h3>
         ${p.grande ? `<p>${p.txt}</p>` : ''}
-        <div class="pr"><span class="ahora">15 <small>USD</small></span><span class="antes">${String(p.antes).replace('.', ',')} USD</span></div>
+        <div class="pr"><span class="ahora">${pr} <small>USD</small></span><span class="antes">${String(p.antes).replace('.', ',')} USD</span></div>
         <span class="unico">Pago único, sin mensualidades</span>
-        <a class="btn" href="${EUROPA && p.imp ? p.imp : p.url}" target="_blank" rel="noopener">Lo quiero a 15</a>
+        <a class="btn" href="${EUROPA && p.imp ? p.imp : p.url}" target="_blank" rel="noopener">Lo quiero a ${pr}</a>
       </div>
     </div>`;
   el.querySelector('.frente').addEventListener('click', () => abrirRegalo(el, true));
@@ -372,14 +391,14 @@ document.getElementById('todos').addEventListener('click', () => {
 // Regalo gigante
 const gigante = document.getElementById('gigante');
 gigante.addEventListener('click', () => {
-  if (gigante.classList.contains('abierto')) { document.getElementById('ruleta').scrollIntoView({behavior: 'smooth'}); return; }
+  if (gigante.classList.contains('abierto')) { abrirJuego(); return; }
   gigante.classList.add('abierto');
   const r = gigante.getBoundingClientRect();
   explota(r.left + r.width / 2, r.top + r.height / 2, 260);
   setTimeout(lluvia, 300);
   if (navigator.vibrate) navigator.vibrate([40, 40, 80]);
-  const t = document.getElementById('toca'); t.textContent = '🎉 ¡Bajá y girá tu ruleta!'; t.classList.add('listo');
-  setTimeout(() => document.getElementById('ruleta').scrollIntoView({behavior: 'smooth', block: 'center'}), 1700);
+  const t = document.getElementById('toca'); t.textContent = '🎡 ¡Tu ruleta te espera!'; t.classList.add('listo');
+  setTimeout(abrirJuego, 1200);
 });
 
 // Ruleta: siempre cae en 70 % y queda guardada en este navegador
@@ -406,6 +425,18 @@ const rueda = document.getElementById('rueda');
 })();
 let guardado = null;
 try { guardado = localStorage.getItem(CLAVE_RU); } catch (e) {}
+const modal = document.getElementById('modal'), giro = document.getElementById('giro');
+function abrirJuego() { modal.classList.add('ver'); modal.setAttribute('aria-hidden', 'false'); document.body.classList.add('modal-abierto'); }
+function cerrarJuego() { modal.classList.remove('ver'); modal.setAttribute('aria-hidden', 'true'); document.body.classList.remove('modal-abierto'); }
+function mostrarPrecios() {
+  cerrarJuego();
+  setTimeout(() => {
+    document.getElementById('regalos').scrollIntoView({behavior: 'smooth'});
+    document.querySelectorAll('.reg:not(.abierta)').forEach((el, i) => setTimeout(() => abrirRegalo(el, false), 500 + i * 300));
+  }, 350);
+}
+document.getElementById('cerrar').addEventListener('click', () => guardado ? mostrarPrecios() : cerrarJuego());
+document.getElementById('ver-precios').addEventListener('click', mostrarPrecios);
 function premiado(animado) {
   const btn = document.getElementById('girar');
   btn.disabled = true; btn.textContent = '70 %';
@@ -413,13 +444,19 @@ function premiado(animado) {
   document.getElementById('ganaste').classList.add('ver');
   document.getElementById('regalos').classList.remove('bloqueado');
   document.getElementById('barra').classList.add('ver');
+  const tk = document.getElementById('toca'); tk.textContent = '✅ Ganaste 70 % OFF · tocá el regalo para ver tu ruleta'; tk.classList.add('listo');
   if (animado) {
-    const r = rueda.getBoundingClientRect(); explota(r.left + r.width / 2, r.top + r.height / 2, 220); lluvia();
+    const r = rueda.getBoundingClientRect(); explota(r.left + r.width / 2, r.top + r.height / 2, 240); lluvia();
     if (navigator.vibrate) navigator.vibrate([60, 40, 120]);
-    setTimeout(() => document.getElementById('ganaste').scrollIntoView({behavior: 'smooth', block: 'center'}), 900);
+    [523, 659, 784, 1047].forEach((f, i) => setTimeout(() => bip(f), 140 + i * 130));
+    setTimeout(() => document.getElementById('ganaste').scrollIntoView({behavior: 'smooth', block: 'end'}), 700);
   }
 }
-if (guardado) { rueda.style.transition = 'none'; rueda.style.transform = `rotate(${-GANA * 45}deg)`; premiado(false); }
+if (guardado) {
+  giro.style.animation = 'none'; rueda.style.transition = 'none'; rueda.style.transform = `rotate(${-GANA * 45}deg)`; premiado(false);
+  document.querySelectorAll('.reg').forEach(el => el.classList.add('abierta'));
+  abiertos = PRODUCTOS.length; document.getElementById('abiertos').textContent = abiertos; document.getElementById('prog').style.width = '100%';
+}
 let audio;
 function bip(f) {
   try {
@@ -434,8 +471,12 @@ document.getElementById('girar').addEventListener('click', () => {
   guardado = '70';
   try { localStorage.setItem(CLAVE_RU, '70'); } catch (e) {}
   const btn = document.getElementById('girar'); btn.disabled = true; btn.textContent = '…';
+  // frena el giro suave donde está y arranca el giro grande desde ahí
+  const m = getComputedStyle(giro).transform; let ang = 0;
+  if (m && m !== 'none') { const v = m.match(/matrix\(([^)]+)\)/)[1].split(',').map(Number); ang = Math.atan2(v[1], v[0]) * 180 / Math.PI; }
+  giro.style.animation = 'none'; giro.style.transform = `rotate(${ang}deg)`;
   const vueltas = 7, extra = (Math.random() * 30 - 15);
-  const final = vueltas * 360 - GANA * 45 + extra;
+  const final = vueltas * 360 - GANA * 45 - ang + extra;
   document.querySelector('.ruleta').classList.add('girando');
   requestAnimationFrame(() => { rueda.style.transform = `rotate(${final}deg)`; });
   // tic-tac que se va frenando
