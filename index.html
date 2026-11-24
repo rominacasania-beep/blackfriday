@@ -120,7 +120,7 @@ section{margin-top:46px}
 .dorso .ahora{font-family:var(--num);font-weight:900;font-size:26px;color:var(--dorado2);line-height:1}
 .dorso .ahora small{font-family:var(--sans);font-size:11px;font-weight:600}
 .dorso .unico{font-size:10.5px;color:var(--gris)}
-.dorso .btn{padding:11px 8px;font-size:13.5px;border-radius:11px;margin-top:auto}
+.dorso .btn{min-height:42px;padding:11px 8px;font-size:13.5px;border-radius:11px;margin-top:auto}
 .reg.grande{grid-column:1/-1;min-height:296px}
 .reg.grande .dorso{flex-direction:row}
 .reg.grande .dorso .img{width:44%;aspect-ratio:auto}
@@ -200,6 +200,19 @@ section{margin-top:46px}
 .ganaste .btn{margin-top:14px}
 body.modal-abierto{overflow:hidden}
 
+/* Instagram arriba y redes abajo */
+.ig-top{position:relative;z-index:4;display:flex;align-items:center;gap:10px;padding:9px max(16px,env(safe-area-inset-left));background:#0d0716;text-decoration:none;color:#fff;border-bottom:1px solid rgba(180,155,232,.25)}
+.ig-ico{flex:none;width:34px;height:34px;border-radius:10px;display:grid;place-items:center;color:#fff;background:radial-gradient(circle at 30% 110%,#fdf497 0%,#fd5949 45%,#d6249f 60%,#285aeb 90%)}
+.ig-txt{flex:1;line-height:1.2;font-size:13px}.ig-txt b{display:block;font-size:14px}.ig-txt small{color:var(--gris);font-size:11.5px}
+.ig-btn{flex:none;font-weight:700;font-size:13px;color:#2a1640;background:linear-gradient(90deg,var(--dorado),var(--dorado2));border-radius:99px;padding:8px 16px}
+.redes{text-align:center}
+.red{display:flex;align-items:center;gap:10px;min-height:56px;padding:10px 14px;border-radius:16px;text-decoration:none;color:#fff;background:var(--card);border:1px solid rgba(180,155,232,.3);text-align:left;transition:transform .15s}
+.red:active{transform:scale(.97)}
+.red span{font-size:22px}.red b{flex:1;font-size:14px;font-weight:600}.red small{display:block;font-size:11px;color:var(--gris);font-weight:400}
+.red-g .red{flex-direction:column;align-items:flex-start;gap:4px}
+.red.wa{margin-top:16px;background:linear-gradient(135deg,#128c4a,#25d366);border:0;box-shadow:0 8px 24px rgba(37,211,102,.3)}
+.red.wa i{font-style:normal;font-weight:700;font-size:13px;background:#fff;color:#128c4a;border-radius:99px;padding:7px 14px}
+.red-g{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px}
 footer{margin-top:40px;text-align:center;font-size:12px;color:#8f84a8;line-height:1.7}
 footer b{color:var(--gris)}
 
@@ -223,6 +236,7 @@ body.fin .reloj,body.fin .toca{display:none}
 <canvas id="cielo" aria-hidden="true"></canvas>
 <canvas id="confeti" aria-hidden="true"></canvas>
 
+<a class="ig-top" href="https://www.instagram.com/romimanifiesta" target="_blank" rel="noopener"><span class="ig-ico"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg></span><span class="ig-txt"><b>@romimanifiesta</b><small>Seguime en Instagram</small></span><span class="ig-btn">Seguir</span></a>
 <div class="cinta" aria-hidden="true"><div>
   <span>🎁 Black Friday</span><span>Hasta 100 % OFF</span><span>✨ Hasta el domingo</span><span>Pago único</span><span>🎁 Black Friday</span><span>Hasta 100 % OFF</span><span>✨ Hasta el domingo</span><span>Pago único</span>
   <span>🎁 Black Friday</span><span>Hasta 100 % OFF</span><span>✨ Hasta el domingo</span><span>Pago único</span><span>🎁 Black Friday</span><span>Hasta 100 % OFF</span><span>✨ Hasta el domingo</span><span>Pago único</span>
@@ -277,6 +291,18 @@ body.fin .reloj,body.fin .toca{display:none}
       <p style="margin:4px 0 14px;opacity:.8">pago único · sin mensualidades · precio Black Friday hasta el lunes 30/11</p>
       <a class="btn" href="https://productos.romimanfiesta.com/masterclass/" style="display:inline-block;text-decoration:none">Quiero entrar al taller</a>
       <div class="ok" id="ok">🎉 ¡Listo! Estás en la primera tanda. Te escribo con todos los detalles y tu precio Black Friday.</div>
+    </div>
+  </section>
+
+  <section class="redes">
+    <h2 class="titulo">Conectemos <em>💜</em></h2>
+    <p class="sub">Sumate a mi comunidad y seguime en redes.</p>
+    <a class="red wa" href="https://chat.whatsapp.com/EAKelI1qN16JRe0HTi0wvv" target="_blank" rel="noopener"><span>💬</span><b>Comunidad de WhatsApp</b><i>Unirme</i></a>
+    <div class="red-g">
+      <a class="red" href="https://www.instagram.com/romimanifiesta" target="_blank" rel="noopener"><span>📸</span><b>@romimanifiesta</b><small>Instagram</small></a>
+      <a class="red" href="https://www.instagram.com/roomivlogss" target="_blank" rel="noopener"><span>🎥</span><b>@roomivlogss</b><small>Instagram personal</small></a>
+      <a class="red" href="https://www.youtube.com/channel/UCPCZiYX0sE207Pb8AOZhiPQ" target="_blank" rel="noopener"><span>▶️</span><b>YouTube</b><small>Videos</small></a>
+      <a class="red" href="https://pin.it/6bklMZCPP" target="_blank" rel="noopener"><span>📌</span><b>Pinterest</b><small>Inspiración</small></a>
     </div>
   </section>
 
